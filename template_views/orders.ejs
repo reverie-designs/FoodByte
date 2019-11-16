@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <!-- Fonts -->
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/096d0c019b.js" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <!-- Custom JavaScript -->
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- STYLE MOVE TO SCSS -->
+    <style>
+      .bg-dark{
+        background-color: black !important;
+      }
+      footer {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        padding: 2px 0;
+        background-color:black;
+      }
+      .menu-items , .order{
+        width: 50%;
+      }
+      .alert {
+        width: 50%;
+      }
+    </style>
+  </head>
+
+  <body class="bg-dark">
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="/">FoodByte</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <!-- <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="#">Order History</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search"> -->
+              <button class="btn btn-outline-light my-2 my-sm-0 mr-2" type="submit">Login</button>
+              <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Sign Up</button>
+
+            </form>
+          </div>
+        </nav>
+    </header>
+    <section class="restaurant-banner">
+        <img class="cover-photo-url" src="https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" width="1000" height="450">
+    </section>
+    <main class="d-flex justify-content-between px-5 py-3 text-light">
+      <!-- MENU ITEMS -->
+      <section class="menu-items">
+        <article class="menu-item">
+          <h2>Item Title</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id.</p>
+        </article>
+        <article class="menu-item">
+            <h2>Item Title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id.</p>
+          </article>
+      </section>
+      <section class="order">
+        <h2>Your Order</h2>
+        <!-- ORDER FORM -->
+        <form method="POST" action="/orders" class="my-2">
+          <!-- EACH SELECTED MENU ITEM -->
+          <div class="dp-flex justify-content-between">
+              <label class="pr-2"> Delicious burger </label>
+              <input type="number" name="menu_item" min="0" max="100" step="1" size="2"><br>
+          </div>
+          <!-- END OF ITEM -->
+          <!-- EACH SELECTED MENU ITEM -->
+          <div class="dp-flex justify-content-between">
+            <label class="pr-2"> Delicious burger </label>
+            <input type="number" name="menu_item" min="0" max="100" step="1" size="2"><br>
+        </div>
+        <!-- END OF ITEM -->
+
+          <button type="submit"> Submit</button>
+        </form>
+        <p class="alert bg-danger text-center"> Your Order Has been Placed <br> Awaiting Confirmation</p>
+      </section>
+    </main>
+
+
+    <footer class="text-light text-center"> <p><small> FoodByte created By Herm, Arv, Dasha For Lighthouse Labs 2019</small></p></footer>
+  </body>
+</html>
