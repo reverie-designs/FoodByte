@@ -21,7 +21,6 @@ db.connect();
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
-app.use(express.static('public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
@@ -30,7 +29,7 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
-
+app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -48,12 +47,8 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  let templateVars = {video: "lemon-drop.mp4", img: "octocat.png"};
-  console.log(templateVars.img);
-  res.render("index", templateVars);
+  res.render("index");
 });
-
-// TEMPORARY Routes
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
