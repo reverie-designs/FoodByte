@@ -47,8 +47,8 @@ const loginRoutes = require("./routes/login");
 // const ordersRoutes = require("./routes/orders");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-const data = dataHelpers(db);
-data.getUserByEmail('email').then(user => console.log('WORKS!: ', user));
+// const data = dataHelpers(db);
+// data.getUserByEmail('email').then(user => console.log('WORKS!: ', user));
 
 app.use("/api/users", usersRoutes(db)); //are we keeping it this way
 app.use("/api/widgets", widgetsRoutes(db));
@@ -62,8 +62,9 @@ app.use("/login", loginRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+// redirects to the restaurant page from here
 app.get("/", (req, res) => {
-  res.render("index");
+  res.redirect("/restaurants");
 });
 
 app.listen(PORT, () => {

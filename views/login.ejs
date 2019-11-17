@@ -5,13 +5,124 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <!-- Fonts -->
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/096d0c019b.js" crossorigin="anonymous"></script>
+    <!-- JQuery -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <!-- Custom JavaScript -->
     <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-  <body>
-    <h1>Login Page</h1>
+<!-- STYLE MOVE TO SCSS -->
+<style>
+    .bg-dark{
+      background-color: black !important;
+    }
+    footer {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      padding: 2px 0;
+      background-color:black;
+    }
+    .random-image{
+      width: 200px;
+      height: 200px;
+      background-color: green;
+      border: 2px solid black;
+      border-radius: 35%;
+    }
+    .image-randomizer{
+      width: 50%;
+    }
+    .log-in{
+      width: 50%;
+    }
+    label {
+      color: white;
+    }
+    .login-main{
+      width: 80%;
+    }
+  </style>
+</head>
+
+<body class="bg-dark">
+  <!-- NAVIGATION -->
+  <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">FoodByte</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="#">Order History</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search"> -->
+            <button class="btn btn-outline-light my-2 my-sm-0 mr-2" type="submit">Login</button>
+            <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Sign Up</button>
+
+          </form>
+        </div>
+      </nav>
+  </header>
+<!-- END NAVIGATION -->
+<main class="d-flex justify-content-between login-main">
+  <section class="image-randomizer">
+    <!-- RANDOM IMAGES -->
+    <div class="random-image text-center"><img src="" alt="">Random Image 1</div>
+    <div class="random-image text-center"><img src="" alt="">Random Image 2</div>
+    <div class="random-image text-center"><img src="" alt="">Random Image 3</div>
+  </section>
+
+  <section class="log-in mr-4">
+    <h1 class="text-light">Sign Up or Log In</h1>
+    <!-- LOGIN/SIGNUP FORM -->
+      <form method="POST" action="/login">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="email" class="form-control" name="name" id="name"  placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+          </div>
+          <div class="form-group">
+              <label for="password">Phone</label>
+              <input type="tel" name="phone" class="form-control" id="phone" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              required>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-light">Submit</button>
+      </form>
+
+  </section>
+</main>
+
+
+    <footer class="text-light text-center"> <p><small> FoodByte created By Herm, Arv, Dasha For Lighthouse Labs 2019</small></p></footer>
   </body>
 </html>
