@@ -1,10 +1,11 @@
 const express = require('express');
 const router  = express.Router();
 // const data = require('../helpers/dataHelpers');
-const users = {
+const user = {
   "aJ48lW": {
-    name: "SAM",
+    name: "a",
     email: "a@a.a",
+    phone: 1234567890,
     password: "dish"
   }
 };
@@ -13,8 +14,8 @@ module.exports = (db) => {
   // populates the restaurants home page with template variable for now
   // get request for the page
   router.get("/", (req, res) => {
-    console.log('---------------------hey');
     let templateVars = {
+      user_id: 'dude',
       restaurant1: {
         title: "The greatest restaurant",
         cuisine_type: "human edible",
@@ -28,27 +29,40 @@ module.exports = (db) => {
         cover_photo_url: 'https://images.unsplash.com/photo-1573920111312-04f1b25c6b85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
       }
     };
-    res.render('index', templateVars);
+    if (!req.session.user_id) {
+      console.log('---------------------hey', templateVars.user_id);
+      res.render('index', templateVars);
+    } else { //using cookie parser??????????
+      templateVars.user_id = req.session.user_id;
+      console.log('---------------------hey', templateVars.user_id);
+      res.render('index', templateVars);
+    }
   });
   // renders the specfic restaurants page
   router.get("/:id", (req, res) => {
-    // if (!req.session.user_id) { //using cookie parser??????????
-    //   res.redirect('/login');
-    // } else {
-    const templateVars = {
-      user_id: 'dude',
-      item_1: {
-        title: "Fries w/ side - burger",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-      },
-      item_2: {
-        title: "BACON w/ side - bacon",
-        description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-      }
-    };
-    res.render('orders', templateVars);
-  //}
+    console.log('---------------------hey');
+    if (!req.session.user_id) { //using cookie parser??????????
+      res.redirect('/login');
+    } else {
+      const templateVars = {
+        user_id: 'dude',
+        item_1: {
+          title: "Fries w/ side - burger",
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+        },
+        item_2: {
+          title: "BACON w/ side - bacon",
+          description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+        }
+      };
+      res.render('orders', templateVars);
+    }
   });
+
+
+
+
+
   // router.post("/:id", (req, res) => {
   //   if (!req.session.user_id) { //using cookie parser??????????
   //     res.redirect('/login');
