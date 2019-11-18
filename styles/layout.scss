@@ -7,3 +7,110 @@ body {
     color: #244751;
   }
 }
+
+.jumbotron{
+  padding: 40%;
+}
+.bg-dark{
+  background-color: black !important;
+}
+.welcome{
+  background-image: url(https://images.unsplash.com/photo-1541529086526-db283c563270?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80) !important;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.restaurant {
+  width: 90%;
+  margin: auto;
+}
+.restaurant-slideshow {
+  width: 50%;
+  height: 250px;
+}
+.rest-description {
+  width:50%;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 2px 0;
+  background-color:black;
+}
+.header {
+  position: relative;
+  background-color: black;
+  height: 75vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+.header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+.header > .container {
+  position: relative;
+  z-index: 2;
+}
+.header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+#restaurants {
+  margin-bottom: 10%;
+}
+.restaurant {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  overflow: hidden;
+}
+//LOGIN PAGE
+
+.random-image{
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  border: 2px solid black;
+  border-radius: 35%;
+}
+.image-randomizer{
+  width: 50%;
+}
+.log-in{
+  width: 50%;
+}
+label {
+  color: white;
+}
+.login-main{
+  width: 80%;
+}
+// =================MEDIA QUERIES
+@media (pointer: coarse) and (hover: none) {
+  .header {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+  }
+  .header video {
+    display: none;
+  }
+}

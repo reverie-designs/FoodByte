@@ -21,84 +21,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- STYLE MOVE TO SCSS -->
-    <style>
-      .jumbotron{
-        padding: 40%;
-      }
-      .bg-dark{
-        background-color: black !important;
-      }
-      .welcome{
-        background-image: url(https://images.unsplash.com/photo-1541529086526-db283c563270?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80) !important;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-      }
-      .restaurant {
-        width: 90%;
-        margin: auto;
-      }
-      .restaurant-slideshow {
-        width: 50%;
-        height: 250px;
-      }
-      .rest-description {
-        width:50%;
-      }
-      footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding: 2px 0;
-        background-color:black;
-      }
-      .header {
-        position: relative;
-        background-color: black;
-        height: 75vh;
-        min-height: 25rem;
-        width: 100%;
-        overflow: hidden;
-      }
-      .header video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: 0;
-        -ms-transform: translateX(-50%) translateY(-50%);
-        -moz-transform: translateX(-50%) translateY(-50%);
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
-      }
-      .header > .container {
-        position: relative;
-        z-index: 2;
-      }
-      .header .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background-color: black;
-        opacity: 0.5;
-        z-index: 1;
-      }
-      @media (pointer: coarse) and (hover: none) {
-        .header {
-          background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
-        }
-        .header video {
-          display: none;
-        }
-      }
-    </style>
   </head>
 
   <body class="bg-dark">
@@ -134,7 +56,7 @@
     <section class="header">
         <div class="overlay"></div>
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-          <source src="" type="video/mp4">
+          <source src="media/steak.mp4" type="video/mp4">
         </video>
         <div class="container h-100">
           <div class="d-flex h-100 text-center align-items-center">
@@ -150,15 +72,17 @@
 
     <section id="restaurants" class="text-light bg-info">
       <!-- RESTAURANTS  DB RENDERED -->
+      <% let i='slide'%>
+      <% let x=0 %>
       <% for(rest of restaurants){ %>
-        <article id="restbox" class="d-flex justify-content-between px-5 py-3 my-5 restaurant">
+        <article class="d-flex justify-content-between px-5 py-3 restaurant">
             <!-- RESTAURANT SLIDESHOW -->
-            <div id="<%= rest.title %>" class="carousel slide restaurant-slideshow" data-ride="carousel">
+            <div id="carouselExampleIndicators<%= i %>" class="carousel slide restaurant-slideshow" data-ride="carousel">
 
                 <ol class="carousel-indicators">
-                  <li data-target="#<%= rest.title %>" data-slide-to="0" class="active"></li>
-                  <li data-target="#<%= rest.title %>" data-slide-to="1"></li>
-                  <li data-target="#<%= rest.title %>" data-slide-to="2"></li>
+                  <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -171,11 +95,11 @@
                     <img class="d-block w-100" src="<%= rest.slide_1_url %>" alt="Third slide for <%= rest.title %>">
                   </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carouselExampleIndicators<%= i %>" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselExampleIndicators<%= i %>" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
                 </a>
@@ -186,9 +110,10 @@
                 <p class="p-lead"> <%= rest.cuisine_type %></p>
                 <p><%= rest.hours_of_operation %></p>
             </div>
-          </article>';
-
+          </article>
+          <%i+=1%>
       <% } %>
+
     </section>
     <footer class="text-light text-center"> <p><small> FoodByte created By Herm, Arv, Dasha For Lighthouse Labs 2019</small></p></footer>
   </body>
