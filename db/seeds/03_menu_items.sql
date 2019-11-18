@@ -16,10 +16,6 @@ VALUES (1, 'French Fries', 'Freshly cut fried potatoes.', 3.95, 50);
 
 INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
 VALUES (1, 'Baked Beans', 'Fresh canned beans baked on the stove top, yumm...', 3.95, 40);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 94ac80050d66f4136d919b9c52c4b173456021bf
 
 INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
 VALUES (1, 'Perrier', 'Sparkling Water', 2.25, 50);
