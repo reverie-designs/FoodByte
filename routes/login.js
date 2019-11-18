@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-// const getUserWithEmail = require('../helpers/dataHelpers');
+const dh = require('../helpers/dataHelpers');
 
 
 // router.post("/", (req, res) => {
@@ -16,39 +16,55 @@ const router  = express.Router();
 //   res.redirect("/restaurants");
 // });
 
-// INSERT INTO users (name, email, password, phone )
-// VALUES ($1, $2, $3, $4)
-// RETURNING *
-
 // exports.getUserWithEmail = getUserWithEmail;
 
 module.exports = (db) => {
+  const login = (email, password) => {
+    return db.getUserWithEmail(email)
+      .then(user => {
+        if (password === user.password) {
+          return user;
+        }
+        return null;
+      });
+  };
+
   router.post("/", (req, res) => {
-    console.log(req.body);
-    req.session.user_id = req.params.id;
-    res.redirect("/restaurants");
+    const {name, phone, email, password} = req.body;
+    login(email, password)
+      .then(user => {
+        if (!user) {
+          res.send({error: "error"});
+          return;
+        }
+        req.session.user_id = user.id;
+        req.session.user_name = user.name;
+        res.send({user: {name: user.name, email: user.email, phone: user.phone, id: user.id}});
+        res.redirect("/restaurants");
+      })
+      .catch(e=> res.send(e));
   });
+
   router.get("/", (req, res) => {
+    const user = dh(db).getUserWithEmail();
+    if (user) {
+      req.session.user_id = user.id;
+    }
+    res.redirect("/restaurants");
     // if (!req.session.user_id) { //checks if a user is logged in already
     //   req.session.user_id = req.params.id;
     //   res.redirect("/restraunts");
     // } else {
-      let templateVars = {
-        user_id: req.params.id,
-        order_history: 'ORDER HISTORY',
-        slide_1: 'https://picsum.photos/id/679/200/200',
-        slide_2: 'https://picsum.photos/id/679/200/200',
-        slide_3: 'https://picsum.photos/id/679/200/200'
-      };
-      res.render("login", templateVars);
+    //   let templateVars = {
+    //     user_id: req.params.id,
+    //     order_history: 'ORDER HISTORY',
+    //     slide_1: 'https://picsum.photos/id/679/200/200',
+    //     slide_2: 'https://picsum.photos/id/679/200/200',
+    //     slide_3: 'https://picsum.photos/id/679/200/200'
+    //   };
+    //   res.render("login", templateVars);
     // }
   });
-
-  router.get("/:id", (req, res) => {
-    req.session.user_id = req.params.id;
-    req.redirect('/restaurants');
-  });
-
   return router;
 };
 
