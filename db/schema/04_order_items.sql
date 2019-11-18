@@ -9,4 +9,4 @@ CREATE TABLE order_items (
 
 /* How to have multiple menu items selected?
 How to restrict menu items only from 1 restuant id?
-Should we delete orders_items and only have orders?
+Should we delete orders_items and only have orders?*/
