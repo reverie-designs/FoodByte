@@ -2,6 +2,13 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+  // send sms to owner, details - order item, qty
+  router.post("/", (req, res) => {
+    // send sms to user , details - order confiramtion after the owner confirms
+    console.log(req.body);
+    // req.session.user_id = req.params.id;
+    res.redirect("/restaurants");
+  });
   const rest = {
     owner_id: 2,
     title: "the greatest restaurant",
@@ -18,12 +25,6 @@ module.exports = (db) => {
     country: 'canada',
     active: 'true'
   };
-  // populates the restaurant
-  router.post("/orders", (req, res) => {
-    // send sms to owner, details - order item, qty
-    // send sms to user , details - order confiramtion after the owner confirms
-    res.redirect('orders');
-  });
   // router.post("/orders", (req, res) => {
   //   db.query(`SELECT * FROM users;`)
   //     .then(data => {

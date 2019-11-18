@@ -1,6 +1,13 @@
 const express = require('express');
 const router  = express.Router();
 // const data = require('../helpers/dataHelpers');
+const users = {
+  "aJ48lW": {
+    name: "SAM",
+    email: "a@a.a",
+    password: "dish"
+  }
+};
 
 module.exports = (db) => {
   // populates the restaurants home page with template variable for now
@@ -23,28 +30,31 @@ module.exports = (db) => {
     };
     res.render('index', templateVars);
   });
+  // renders the specfic restaurants page
   router.get("/:id", (req, res) => {
+    // if (!req.session.user_id) { //using cookie parser??????????
+    //   res.redirect('/login');
+    // } else {
     const templateVars = {
+      user_id: 'dude',
       item_1: {
-        title: "Fries w/ side of burger",
+        title: "Fries w/ side - burger",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
       },
       item_2: {
-        title: "BACON w/ side of bacon",
+        title: "BACON w/ side - bacon",
         description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
       }
     };
-    // if (!req.session.user_id) { //using cookie parser??????????
-    //   res.redirect('/login');
-    // }
     res.render('orders', templateVars);
+  //}
   });
-  router.post("/:id", (req, res) => {
-    if (!req.session.user_id) { //using cookie parser??????????
-      res.redirect('/login');
-    }
-    res.render('orders', rest);
-  });
+  // router.post("/:id", (req, res) => {
+  //   if (!req.session.user_id) { //using cookie parser??????????
+  //     res.redirect('/login');
+  //   }
+  //   res.render('orders', rest);
+  // });
 
 
   // module.exports = (db) => {
