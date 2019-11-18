@@ -5,22 +5,12 @@ module.exports = (db) => {
   // send sms to owner, details - order item, qty
   router.post("/", (req, res) => {
     // send sms to user , details - order confiramtion after the owner confirms
-    console.log(req.body);
+    console.log(req); // order dtails to be sent owner
+    console.log(req.body); // order dtails to be sent owner
+    // function required to link the users number to the order for sms confirmation/ sending
     // req.session.user_id = req.params.id;
-    res.redirect("/restaurants");
+    let restaurant_id = req.headers.referer.replace("http://localhost:8080/restaurants/", "");
+    res.redirect(req.headers.referer);// redirects to restraunts/:id page
   });
-
-  // router.post("/orders", (req, res) => {
-  //   db.query(`SELECT * FROM users;`)
-  //     .then(data => {
-  //       const users = data.rows;
-  //       res.render('users_index', { users });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
   return router;
 };
