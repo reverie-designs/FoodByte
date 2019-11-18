@@ -41,4 +41,38 @@ VALUES (2, 'Old Fashioned Milkshake', 'Strawberry, vanilla or chocolate.', 5.35,
 
 /* Coco Rice Thai Cuisine */
 INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
-VALUES (1, 'Perrier', 'Sparkling Water', 2.25, 50);
+VALUES (3, 'Pad Thai', 'Rice noodles, chicken, tiger shrimp, eggs, tofu, green onions, bean sprouts & ground peanuts with Pad Thai sauce.', 13.00, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (3, 'Vegetarian Basil Noodles', 'Thai style rice noodles stir-fried with tofu, eggs, chilli, shiitake mushrooms, basil leaves & mixed vegetables. Medium Spicy.', 13.00, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (3, 'Pork Chow Mein', 'Steamed chow mein, red pork roast, wontons & vegetables.', 15.00, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (3, 'Green Curry Chicken & Rice', 'Served with a daily roll & your choice of soup or salad of the day. Medium Spicy.', 10.95, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (3, 'Pineapple Fried Rice & Chicken', 'Served with a daily roll & your choice of soup or salad of the day.', 11.95, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (3, 'Thai Iced Tea', 'Classic iced tea...with a thai twist', 3.00, 50);
+
+/* Pizzaiolo */
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (4, 'Sicilian Pizza Slice', 'Meaty and delicious', 4.42, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (4, 'Fredo Pizza Slice (vegan)', 'For our lovely vegans', 4.42, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (4, 'The Godfather Meat Pizza', 'Real Canadian bacon, Italian sausage, pepperoni, mozzarella cheese, parmigiano & our famous Pizzaiolo tomato sauce. Deep dish. Spicy.', 21.44, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (4, 'Mediterranean Vegetarian Pizza', 'Mozzarella cheese, tomatoes, green peppers, black olives, feta cheese & our famous Pizzaiolo tomato sauce.', 18.95, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (4, 'Caesar Salad', 'Fresh romaine lettuce, croutons & parmesan cheese. With Caesar dressing served on the side.', 4.99, 50);
+
+INSERT INTO menu_items (restaurant_id, title, description, price, quantity_remaining)
+VALUES (4, 'San Pellegrino', 'Refreshing Aranciata', 2.49, 50);
