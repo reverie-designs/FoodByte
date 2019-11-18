@@ -16,7 +16,7 @@
     <!-- JQuery -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <!-- Custom JavaScript -->
-    <script type="text/javascript" src="/scripts/index.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -151,7 +151,7 @@
     <section id="restaurants" class="text-light bg-info">
       <!-- RESTAURANTS  DB RENDERED -->
       <% for(rest of restaurants){ %>
-        <article class="d-flex justify-content-between px-5 py-3 restaurant">
+        <article id=<%= rest.title %> </article>class="d-flex justify-content-between px-5 py-3 my-5 restaurant">
             <!-- RESTAURANT SLIDESHOW -->
             <div id="carouselExampleIndicators" class="carousel slide restaurant-slideshow" data-ride="carousel">
               <h2>SLIDESHOW</h2>

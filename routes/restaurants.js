@@ -15,7 +15,6 @@ module.exports = (db) => {
   // populates the restaurants home page with template variable for now
   // get request for the page
   router.get("/", (req, res) => {
-    console.log(dh(db));
     dh(db).getAllRestaurants()
       .then(restaurants => {
         res.render("index", {restaurants})
