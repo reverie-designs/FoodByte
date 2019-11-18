@@ -49,8 +49,8 @@ module.exports = (db) => {
     const user = dh(db).getUserWithEmail();
     if (user) {
       req.session.user_id = user.id;
+      res.redirect("/restaurants");
     }
-    res.redirect("/restaurants");
     // if (!req.session.user_id) { //checks if a user is logged in already
     //   req.session.user_id = req.params.id;
     //   res.redirect("/restraunts");
