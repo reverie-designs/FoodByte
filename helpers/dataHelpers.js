@@ -1,10 +1,10 @@
-module.exports = (db) => {
+module.exports = (db) => ({
   /**
      * returns all user data based on user id
      * @param {String} email
      * @param {String} password encrypted
      */
-  const getUserWithEmail = function(email) {
+  getUserWithEmail: function(email) {
     return db.query(`
     SELECT *
     FROM users
@@ -13,29 +13,29 @@ module.exports = (db) => {
       .then(res => {
         return (res.rows.length > 0) ? res.rows[0] : null;
       });
-  };
+  },
 
   /**
    * Populates the restaurants page with the different pages.
    */
 
-  const getAllRestaurants = function() {
+  getAllRestaurants: function() {
     return db.query(`
     SELECT *
-    FROM restuarants;
+    FROM restaurants;
     `)
       .then(res => {
         return res.rows;
         // return (res.rows.length > 0) ? res.rows[0] : null;
       });
-  };
+  },
 
-  exports.getAllRestaurants = getAllRestaurants;
+  // module.exports= {getAllRestaurants};
   /**
    * Populates the restaurants_show page with the title,..., menu_items.
    * @param {Number} restaurant_id
    */
-  const getAllRestaurantMenuItems = function(restaurant_id) {
+  getAllRestaurantMenuItems: function(restaurant_id) {
     return db.query(`
     SELECT *
     FROM menu_items
@@ -44,8 +44,8 @@ module.exports = (db) => {
       .then(res => {
         return (res.rows.length > 0) ? res.rows[0] : null;
       });
-  };
+  },
 
-};
+});
 
 // module.exports = { getUserWithEmail, getAllRestaurants, getAllRestaurantMenuItems };

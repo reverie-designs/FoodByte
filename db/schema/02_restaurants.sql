@@ -17,5 +17,6 @@ CREATE TABLE restaurants (
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
   post_code VARCHAR(255) NOT NULL,
-  country VARCHAR(255) NOT NULL
+  country VARCHAR(255) NOT NULL,
+  phone VARCHAR(255) NOT NULL
 );

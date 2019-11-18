@@ -1,20 +1,3 @@
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });;
-// });
-
-// for every restuarant call this function
-
-
-/*
-  renders Restaurants to home page via html
-*/
 const createRestEl = (restaurant) => {
   return `<article class="d-flex justify-content-between px-5 py-3 restaurant">
   <!-- RESTAURANT SLIDESHOW -->
