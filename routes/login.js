@@ -16,6 +16,12 @@ const router  = express.Router();
 //   res.redirect("/restaurants");
 // });
 
+// INSERT INTO users (name, email, password, phone )
+// VALUES ($1, $2, $3, $4)
+// RETURNING *
+
+// exports.getUserWithEmail = getUserWithEmail;
+
 module.exports = (db) => {
   router.post("/", (req, res) => {
     console.log(req.body);
