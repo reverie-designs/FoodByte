@@ -23,10 +23,10 @@ module.exports = (db) => {
     res.redirect("/restaurants");
   });
   router.get("/", (req, res) => {
-    if (!req.session.user_id) { //checks if a user is logged in already
-      req.session.user_id = req.params.id;
-      res.redirect("/restraunts");
-    } else {
+    // if (!req.session.user_id) { //checks if a user is logged in already
+    //   req.session.user_id = req.params.id;
+    //   res.redirect("/restraunts");
+    // } else {
       let templateVars = {
         user_id: req.params.id,
         order_history: 'ORDER HISTORY',
@@ -35,7 +35,7 @@ module.exports = (db) => {
         slide_3: 'https://picsum.photos/id/679/200/200'
       };
       res.render("login", templateVars);
-    }
+    // }
   });
 
   router.get("/:id", (req, res) => {

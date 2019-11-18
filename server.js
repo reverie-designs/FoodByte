@@ -38,7 +38,7 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
+// const usersRoutes = require("./routes/users"); //=========================================
 const widgetsRoutes = require("./routes/widgets");
 const restaurantRoutes = require("./routes/restaurants");
 const loginRoutes = require("./routes/login");
@@ -52,7 +52,7 @@ const ordersRoutes = require("./routes/orders");
 // const data = dataHelpers(db);
 // data.getUserByEmail('email').then(user => console.log('WORKS!: ', user));
 
-app.use("/api/users", usersRoutes(db)); //are we keeping it this way
+// app.use("/api/users", usersRoutes(db)); //are we keeping it this way //==============
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/restaurants", restaurantRoutes(db));
 app.use("/login", loginRoutes(db));

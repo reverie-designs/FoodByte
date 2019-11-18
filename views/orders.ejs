@@ -33,7 +33,14 @@
         padding: 2px 0;
         background-color:black;
       }
-      .menu-items , .order{
+      .menu-items , .order {
+        width: 50%;
+      }
+
+      .item-title{
+        width: 50% !important;
+      }
+      .item-price {
         width: 50%;
       }
       .alert {
@@ -62,6 +69,7 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
               <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search"> -->
+              <span class="text-light mr-2">My Name is </span>
               <button class="btn btn-outline-light my-2 my-sm-0 mr-2" type="submit">Login</button>
               <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Sign Up</button>
 
@@ -74,18 +82,25 @@
     </section>
     <main class="d-flex justify-content-between px-5 py-3 text-light">
       <!-- MENU ITEMS -->
-      <section class="menu-items">
+      <section class="menu-items mx-5 my-2">
         <article class="menu-item">
-          <h2><%= item_1.title %></h2>
+          <div class="d-flex justify-content-between">
+            <h2 class=""><%= item_1.title %></h2>
+            <p class="lead">$35.56</p>
+          </div>
           <p><%= item_1.description %></p>
         </article>
         <article class="menu-item">
-            <h2><%= item_2.title %></h2>
+          <div class="d-flex justify-content-between">
+              <h2 class=""><%= item_2.title %></h2>
+              <p class="lead">$3.56</p>
+            </div>
             <p><%= item_2.description %></p>
           </article>
       </section>
       <section class="order">
         <h2>Your Order</h2>
+        <p>ORDER NUMBER = ASDFADFASDFG</p>
         <!-- ORDER FORM -->
         <form method="POST" action="/orders" class="my-2">
           <!-- EACH SELECTED MENU ITEM -->
@@ -97,10 +112,16 @@
           <!-- EACH SELECTED MENU ITEM -->
           <div class="dp-flex justify-content-between">
             <label class="pr-2"><%= item_2.title %></label>
-            <input type="number" name="menu_item" min="0" max="100" step="1" size="2"><br>
-        </div>
+            <input type="number" name="menu_item_id" min="0" max="100" step="1" size="2"><br>
+          </div>
+          <div class="dp-flex justify-content-between">
+              <label class="pr-2"></label>
+              <input type="number" name="menu_item_id" min="0" max="100" step="1" size="2"><br>
+          </div>
         <!-- END OF ITEM -->
-
+          <p>Your Total <span>$66</span></p>
+          <p>Tax <span>6.66</span></p>
+          <p>Your Total with Tax <span>72.66</span></p>
           <button type="submit"> Submit</button>
         </form>
         <p class="alert bg-danger text-center"> Your Order Has been Placed <br> Awaiting Confirmation</p>
