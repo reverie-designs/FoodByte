@@ -7,7 +7,7 @@ CREATE TABLE restaurants (
 
   title VARCHAR(255) NOT NULL,
   cuisine_type VARCHAR(255) NOT NULL,
-  hour_of_operations VARCHAR(255) NOT NULL,
+  hours_of_operation VARCHAR(255) NOT NULL,
   cover_photo_url VARCHAR(255) NOT NULL,
   slide_1_url VARCHAR(255) NOT NULL,
   slide_2_url VARCHAR(255) NOT NULL,
