@@ -16,7 +16,7 @@
     <!-- JQuery -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <!-- Custom JavaScript -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/index.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -45,8 +45,9 @@
             <!-- MENUT ITEM -->
             <article class="menu-item">
               <div class="d-flex justify-content-between">
-                <h2 class=""><%= item.itemname %></h2>
-                <p class="lead"><%= item.price %></p>
+                <h2 class="menu-title"><%= item.itemname %></h2>
+                <p class="lead price"><%= item.price %></p>
+                <p><%= item.id %></p>
               </div>
               <p><%= item.description %></p>
             </article>
@@ -57,34 +58,16 @@
         <h2>Your Order</h2>
         <p>ORDER NUMBER <%= newOrder[0].id %></p>
         <!-- ORDER FORM -->
-        <form method="POST" action="/orders" class="my-2">
-          <!-- EACH SELECTED MENU ITEM -->
-          <div class="dp-flex justify-content-between">
-              <label class="pr-2"></label>
-              <input type="number" name="menu_item" min="0" max="100" step="1" size="2"><br>
+        <form class="order-form" method="POST" action="/orders" class="my-2">
+          <!-- RENDER ORDER ITEMS -->
+          <div class="form-items">
+
           </div>
-          <!-- END OF ITEM -->
-          <!-- EACH SELECTED MENU ITEM -->
-          <div class="dp-flex justify-content-between">
-            <label class="pr-2"></label>
-            <input type="number" name="menu_item_id" min="0" max="100" step="1" size="2"><br>
-          </div>
-        <!-- END OF ITEM -->
-        <!-- EACH SELECTED MENU ITEM -->
-        <div class="dp-flex justify-content-between">
-          <label class="pr-2"></label>
-          <input type="number" name="menu_item_id" min="0" max="100" step="1" size="2"><br>
-        </div>
-        <div class="dp-flex justify-content-between">
-          <label class="pr-2"></label>
-          <input type="number" name="menu_item_id" min="0" max="100" step="1" size="2"><br>
-        </div>
-        <!-- END OF ITEM -->
-        <p>Your Total <span>$66</span></p>
-        <p>Tax <span>6.66</span></p>
-        <p>Your Total with Tax <span>72.66</span></p>
-        <button type="submit"> Submit</button>
-      </form>
+          <p>Your Total <span id="totprice"></span></p>
+          <p>Tax <span id="tax"></span></p>
+          <p>Your Total with Tax <span id="total" class="total_price"></span></p>
+          <button type="submit"> Submit</button>
+        </form>
       <p class="alert bg-danger text-center"> Your Order Has been Placed <br> Awaiting Confirmation</p>
     </section>
   </main>
