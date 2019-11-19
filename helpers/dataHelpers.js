@@ -26,11 +26,9 @@ module.exports = (db) => ({
     `)
       .then(res => {
         return res.rows;
-        // return (res.rows.length > 0) ? res.rows[0] : null;
       });
   },
 
-  // module.exports= {getAllRestaurants};
   /**
    * Populates the restaurants_show page with the title,..., menu_items.
    * @param {Number} restaurant_id
@@ -42,9 +40,9 @@ module.exports = (db) => ({
     WHERE menu_items.restaurant_id = $1;
     `, [restaurant_id])
       .then(res => {
-        return (res.rows.length > 0) ? res.rows[0] : null;
+        return res.rows;
       });
-  },
+  }
 
 });
 

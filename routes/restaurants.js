@@ -23,30 +23,26 @@ module.exports = (db) => {
         console.log(e);
         res.send(e);
       })
-      // res.render('index', restaurants);
-    // }
   });
 
 
-  // renders the specfic restaurants page
-  router.get("/:id", (req, res) => {
-    console.log('---------------------hey');
-    // if (!req.session.user_id) { //using cookie parser??????????
-    //   res.redirect('/login');
-    // } else {
-      const templateVars = {
-        user_id: 'dude',
-        item_1: {
-          title: "Fries w/ side - burger",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-        },
-        item_2: {
-          title: "BACON w/ side - bacon",
-          description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-        }
-      };
-      res.render('orders', templateVars);
-    // }
+ // renders the specfic restaurants page
+ router.get("/:id", (req, res) => {
+  // if (!req.session.user_id) {
+  //   res.redirect('/login');
+  // } else {
+    let id = req.params.id;
+    // console.log(id, 'THIS IS REST ID');
+    dh(db).getAllRestaurantMenuItems(id)
+    .then(menu_items => {
+      console.log(menu_items)
+
+      res.render("orders", {menu_items})
+    })
+    .catch(e => {
+      console.log(e);
+      res.send(e);
+    })
   });
 
 

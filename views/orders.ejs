@@ -21,82 +21,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- STYLE MOVE TO SCSS -->
-    <style>
-      .bg-dark{
-        background-color: black !important;
-      }
-      footer {
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        padding: 2px 0;
-        background-color:black;
-      }
-      .menu-items , .order {
-        width: 50%;
-      }
-
-      .item-title{
-        width: 50% !important;
-      }
-      .item-price {
-        width: 50%;
-      }
-      .alert {
-        width: 50%;
-      }
-    </style>
   </head>
 
   <body class="bg-dark">
+
     <!-- NAVIGATION -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="/">FoodByte</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+    <% include partials/_header %>
+    <!-- END NAVIGATION -->
 
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <!-- <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link" href="#">Order History</a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search"> -->
-              <span class="text-light mr-2">My Name is </span>
-              <button class="btn btn-outline-light my-2 my-sm-0 mr-2" type="submit">Login</button>
-              <button class="btn btn-outline-light my-2 mr-sm-2" type="submit">Sign Up</button>
-
-            </form>
-          </div>
-        </nav>
-    </header>
     <section class="restaurant-banner">
         <img class="cover-photo-url" src="https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" width="1000" height="450">
     </section>
     <main class="d-flex justify-content-between px-5 py-3 text-light">
-      <!-- MENU ITEMS -->
       <section class="menu-items mx-5 my-2">
-        <article class="menu-item">
-          <div class="d-flex justify-content-between">
-            <h2 class=""><%= item_1.title %></h2>
-            <p class="lead">$35.56</p>
-          </div>
-          <p><%= item_1.description %></p>
-        </article>
-        <article class="menu-item">
-          <div class="d-flex justify-content-between">
-              <h2 class=""><%= item_2.title %></h2>
-              <p class="lead">$3.56</p>
-            </div>
-            <p><%= item_2.description %></p>
-          </article>
+        <!-- RENDER MENU ITEM -->
+          <% for (let item of menu_items) { %>
+            <!-- MENUT ITEM -->
+            <article class="menu-item">
+              <div class="d-flex justify-content-between">
+                <h2 class=""><%= item.title  %></h2>
+                <p class="lead"><%= item.price %></p>
+              </div>
+              <p><%= item.description %></p>
+            </article>
+            <% } %>
+          <!-- END MENUT ITEM -->
       </section>
       <section class="order">
         <h2>Your Order</h2>
@@ -105,18 +54,14 @@
         <form method="POST" action="/orders" class="my-2">
           <!-- EACH SELECTED MENU ITEM -->
           <div class="dp-flex justify-content-between">
-              <label class="pr-2"><%= item_1.title %></label>
+              <label class="pr-2"></label>
               <input type="number" name="menu_item" min="0" max="100" step="1" size="2"><br>
           </div>
           <!-- END OF ITEM -->
           <!-- EACH SELECTED MENU ITEM -->
           <div class="dp-flex justify-content-between">
-            <label class="pr-2"><%= item_2.title %></label>
+            <label class="pr-2"></label>
             <input type="number" name="menu_item_id" min="0" max="100" step="1" size="2"><br>
-          </div>
-          <div class="dp-flex justify-content-between">
-              <label class="pr-2"></label>
-              <input type="number" name="menu_item_id" min="0" max="100" step="1" size="2"><br>
           </div>
         <!-- END OF ITEM -->
           <p>Your Total <span>$66</span></p>
