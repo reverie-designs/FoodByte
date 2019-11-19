@@ -62,7 +62,3 @@ const printRest = (allRestaurants) => {
   };
 };
 
-
-$(() => {
-
-});

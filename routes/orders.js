@@ -11,6 +11,7 @@ module.exports = (db) => {
     // req.session.user_id = req.params.id;
     let restaurant_id = req.headers.referer.replace("http://localhost:8080/restaurants/", "");
     res.redirect(req.headers.referer);// redirects to restraunts/:id page
+    res.redirect("/restaurants");
   });
   return router;
 };

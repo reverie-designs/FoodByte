@@ -17,13 +17,13 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     dh(db).getAllRestaurants()
       .then(restaurants => {
-        res.render("index", {restaurants})
+        res.render("index", {restaurants, username: req.session.user_name});
       })
       .catch(e => {
         console.log(e);
         res.send(e);
-      })
-      // res.render('index', restaurants);
+      });
+    // res.render('index', restaurants);
     // }
   });
 
@@ -34,21 +34,20 @@ module.exports = (db) => {
     // if (!req.session.user_id) { //using cookie parser??????????
     //   res.redirect('/login');
     // } else {
-      const templateVars = {
-        user_id: 'dude',
-        item_1: {
-          title: "Fries w/ side - burger",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-        },
-        item_2: {
-          title: "BACON w/ side - bacon",
-          description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-        }
-      };
-      res.render('orders', templateVars);
+    const templateVars = {
+      user_id: 'dude',
+      item_1: {
+        title: "Fries w/ side - burger",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+      },
+      item_2: {
+        title: "BACON w/ side - bacon",
+        description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+      }
+    };
+    res.render('orders', templateVars);
     // }
   });
-
 
 
 

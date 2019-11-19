@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-// const getUserWithEmail = require('../helpers/dataHelpers');
+const dh = require('../helpers/dataHelpers');
 
 
 // router.post("/", (req, res) => {
@@ -17,16 +17,40 @@ const router  = express.Router();
 // });
 
 module.exports = (db) => {
+  const login = (email, password) => {
+    return dh(db).getUserWithEmail(email)
+      .then(user => {
+        if (password === user.password) {
+          return user;
+        }
+        return null;
+      });
+  };
+
   router.post("/", (req, res) => {
-    console.log(req.body);
-    req.session.user_id = req.params.id;
-    res.redirect("/restaurants");
+    const {name, phone, email, password} = req.body;
+    login(email, password)
+    .then(user => {
+      console.log("a-------------------------------------asdfsa");
+      if (!user) {
+          res.send({error: "error"});
+          return;
+        }
+        // sets cookie
+        req.session.user_id = user.id;
+        console.log(user);
+        req.session.user_name = user.name;
+        res.redirect("/restaurants");
+        // res.send({user: {name: user.name, email: user.email, phone: user.phone, id: req.session.user_id}});
+      })
+      .catch(e=> res.send(e));
   });
+
   router.get("/", (req, res) => {
-    // if (!req.session.user_id) { //checks if a user is logged in already
-    //   req.session.user_id = req.params.id;
-    //   res.redirect("/restraunts");
-    // } else {
+    console.log('--------------HEY ------------------------');
+    const user = dh(db).getUserWithEmail();
+    if (user) {
+      req.session.user_id = user.id;
       let templateVars = {
         user_id: req.params.id,
         order_history: 'ORDER HISTORY',
@@ -35,14 +59,14 @@ module.exports = (db) => {
         slide_3: 'https://picsum.photos/id/679/200/200'
       };
       res.render("login", templateVars);
+      // res.redirect("/restaurants");
+    }
+    // if (!req.session.user_id) { //checks if a user is logged in already
+    //   req.session.user_id = req.params.id;
+    //   res.redirect("/restraunts");
+    // } else {
     // }
   });
-
-  router.get("/:id", (req, res) => {
-    req.session.user_id = req.params.id;
-    req.redirect('/restaurants');
-  });
-
   return router;
 };
 
