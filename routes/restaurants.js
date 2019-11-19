@@ -36,8 +36,8 @@ module.exports = (db) => {
   if (!req.session.user_id) {
     res.redirect('/login');
   } else {
-    let id = req.params.id;
 
+    let id = req.params.id;
     // console.log(id, 'THIS IS REST ID');
     dh(db).getAllRestaurantMenuItems(id)
     .then(menu_items => {
