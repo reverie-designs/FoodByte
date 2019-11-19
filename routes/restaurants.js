@@ -34,21 +34,22 @@ module.exports = (db) => {
 
   // renders the specfic restaurants page
   router.get("/:id", (req, res) => {
-  // if (!req.session.user_id) {
-  //   res.redirect('/login');
-  // } else {
-    let id = req.params.id;
-    // console.log(id, 'THIS IS REST ID');
-    dh(db).getAllRestaurantMenuItems(id)
-      .then(menu_items => {
-        console.log(menu_items);
-
-      res.render("orders", {menu_items})
-    })
-    .catch(e => {
-      console.log(e);
-      res.send(e);
-    })
+    if (!req.session.user_id) {
+      res.redirect('/login');
+    } else {
+      let id = req.params.id;
+      // console.log(id, 'THIS IS REST ID');
+      dh(db).getAllRestaurantMenuItems(id)
+        .then(menu_items => {
+          console.log(menu_items);
+          let name = req.session.user_name;
+          res.render("orders", {menu_items, username: name});
+        })
+        .catch(e => {
+          console.log(e);
+          res.send(e);
+        });
+    }
   });
 
 
