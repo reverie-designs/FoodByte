@@ -52,6 +52,22 @@ module.exports = (db) => {
     }
   });
 
+    // const templateVars = {
+      //   user_id: 'dude',
+      //   item_1: {
+        //     title: "Fries w/ side - burger",
+        //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+        //   },
+        //   item_2: {
+          //     title: "BACON w/ side - bacon",
+          //     description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+          //   }
+          // };
+          // res.render('orders', templateVars);
+          // }
+
+          return router;
+        };
 
 
 
@@ -114,5 +130,3 @@ module.exports = (db) => {
   //   //   // }
   //   // });
 
-  return router;
-};

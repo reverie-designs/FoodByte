@@ -39,9 +39,11 @@ module.exports = (db) => ({
     return db.query(`
     SELECT menu_items.title AS Title, *
     FROM menu_items
+    JOIN restaurants ON restaurants.id = restaurant_id
     WHERE menu_items.restaurant_id = $1;
     `, [restaurant_id])
       .then(res => {
+        console.log(res.rows);
         return res.rows;
       });
   },
