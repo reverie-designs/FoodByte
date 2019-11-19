@@ -37,12 +37,15 @@ module.exports = (db) => {
     res.redirect('/login');
   } else {
 
-    let id = req.params.id;
+    let id = req.params.id; //restaurant id
     // console.log(id, 'THIS IS REST ID');
     dh(db).getAllRestaurantMenuItems(id)
     .then(menu_items => {
-      console.log(menu_items)
+      // console.log(menu_items)
       let name = req.session.username;
+      let userId = req.session.user_id;
+      // let newOrder = dh(db).createOrder(userId, id);
+      // console.log(newOrder.user_id);
       res.render("orders", {menu_items, username: name})
     })
     .catch(e => {
