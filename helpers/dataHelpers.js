@@ -48,6 +48,7 @@ module.exports = (db) => ({
     /**
    * Creates a new order upon restaurant redirection with order user id and restaurant id
    * @param {Number} restaurant_id
+   * @param {Number} userID
    */
   createOrder: function(userId, restaurant_id) {
     return db.query(`

@@ -42,7 +42,7 @@ module.exports = (db) => {
     dh(db).getAllRestaurantMenuItems(id)
     .then(menu_items => {
       // console.log(menu_items)
-      let name = req.session.username;
+      let name = req.session.user_name;
       let userId = req.session.user_id;
       // let newOrder = dh(db).createOrder(userId, id);
       // console.log(newOrder.user_id);
