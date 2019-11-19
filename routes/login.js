@@ -22,7 +22,6 @@ module.exports = (db) => {
     const {name, phone, email, password} = req.body;
     login(email, password)
       .then(user => {
-        console.log("a-------------------------------------asdfsa");
         if (!user) {
           res.send({error: "error"});
           return;
