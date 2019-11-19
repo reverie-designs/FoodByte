@@ -28,8 +28,8 @@ module.exports = (db) => {
           return;
         }
         // sets cookie
+        // console.log(user);
         req.session.user_id = user.id;
-        console.log(user);
         req.session.user_name = user.name;
         res.redirect("/restaurants");
         console.log(user.name);

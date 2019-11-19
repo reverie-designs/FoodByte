@@ -52,10 +52,7 @@ module.exports = (db) => ({
    */
 
   addUser: function(obj) {
-    return db.query(`
-    INSERT INTO TABLE users (name, phone, email, password)
-    VALUES $1, $2, $3, $4;
-    `, [obj.name, obj.phone, obj.email, obj.password])
+    return db.query(`INSERT INTO users(name, phone, email, password) VALUES($1, $2, $3, $4) RETURNING *;`, [obj.name, obj.phone, obj.email, obj.password])
       .then(res => {
         return (res.rows.length > 0) ? res.rows[0] : null;
       });
