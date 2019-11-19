@@ -37,7 +37,7 @@ module.exports = (db) => ({
    */
   getAllRestaurantMenuItems: function(restaurant_id) {
     return db.query(`
-    SELECT menu_items.title AS Title, *
+    SELECT menu_items.title AS itemName, *
     FROM menu_items
     JOIN restaurants ON restaurants.id = restaurant_id
     WHERE menu_items.restaurant_id = $1;
