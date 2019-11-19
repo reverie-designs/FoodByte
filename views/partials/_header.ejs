@@ -17,14 +17,17 @@
         </ul>
         <div class="form-inline my-2 my-lg-0">
           <!-- USER NAME -->
-          <span class="text-light mr-2">My Name is </span>
+          <% if (username) { %>
+          <span class="text-light mr-2"><%= username%> </span>
           <!--  LOGOUT-->
           <form method="POST" action="/logout">
             <button class="btn btn-outline-light my-2 mr-sm-2" type="button">Log Out</button>
           </form>
+          <% } else { %>
           <!-- LOGIN SIGN UP -->
           <a href="/login"><button class="btn btn-outline-light my-2 my-sm-0 mr-2" type="button">Login</button></a>
           <a href="/login"><button class="btn btn-outline-light my-2 mr-sm-2" type="button">Sign Up</button></a>
+          <%} %>
 
        </div>
     </div>

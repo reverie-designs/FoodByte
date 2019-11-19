@@ -16,23 +16,26 @@ module.exports = (db) => {
   // get request for the page
   router.get("/", (req, res) => {
     dh(db).getAllRestaurants()
-      .then(restaurants => {
-
+    .then(restaurants => {
+      if (req.session.user_name) {
+        console.log(req.session.user_name);
         let name = req.session.user_name;
-        res.render("index", {restaurants, username: name})
-      })
-      .catch(e => {
-        console.log(e);
-        res.send(e);
-      })
+        res.render("index", {restaurants, username: name});
+      } else {
+        res.render("index", {restaurants, username: null});
+      }
+    })
+    .catch(e => {
+      console.log(e);
+      res.send(e);
+    });
   });
-
 
  // renders the specfic restaurants page
  router.get("/:id", (req, res) => {
-  // if (!req.session.user_id) {
-  //   res.redirect('/login');
-  // } else {
+  if (!req.session.user_id) {
+    res.redirect('/login');
+  } else {
     let id = req.params.id;
     // console.log(id, 'THIS IS REST ID');
     dh(db).getAllRestaurantMenuItems(id)
@@ -45,6 +48,7 @@ module.exports = (db) => {
       console.log(e);
       res.send(e);
     })
+  }
   });
 
     // const templateVars = {
