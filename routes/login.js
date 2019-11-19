@@ -22,14 +22,13 @@ module.exports = (db) => {
     const {name, phone, email, password} = req.body;
     login(email, password)
       .then(user => {
-        console.log("a-------------------------------------asdfsa");
         if (!user) {
           res.send({error: "error"});
           return;
         }
         // sets cookie
+        // console.log(user);
         req.session.user_id = user.id;
-        console.log(user);
         req.session.user_name = user.name;
         res.redirect("/restaurants");
         console.log(user.name);

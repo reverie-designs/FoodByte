@@ -37,7 +37,7 @@ module.exports = (db) => ({
    */
   getAllRestaurantMenuItems: function(restaurant_id) {
     return db.query(`
-    SELECT menu_items.title AS itemName, *
+    SELECT menu_items.title AS Title, *
     FROM menu_items
     JOIN restaurants ON restaurants.id = restaurant_id
     WHERE menu_items.restaurant_id = $1;
@@ -54,10 +54,7 @@ module.exports = (db) => ({
    */
 
   addUser: function(obj) {
-    return db.query(`
-    INSERT INTO TABLE users (name, phone, email, password)
-    VALUES $1, $2, $3, $4;
-    `, [obj.name, obj.phone, obj.email, obj.password])
+    return db.query(`INSERT INTO users(name, phone, email, password) VALUES($1, $2, $3, $4) RETURNING *;`, [obj.name, obj.phone, obj.email, obj.password])
       .then(res => {
         return (res.rows.length > 0) ? res.rows[0] : null;
       });
