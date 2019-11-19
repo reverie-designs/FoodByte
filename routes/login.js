@@ -48,12 +48,14 @@ module.exports = (db) => {
   });
 
   router.get("/", (req, res) => {
-    console.log('--------------HEY ------------------------');
     const user = dh(db).getUserWithEmail();
+    if (req.session.user_id) {
+      res.redirect("/restaurants");
+    }
     if (user) {
       req.session.user_id = user.id;
       let templateVars = {
-        // user_name: user.name,
+        username: null,
         // user_id: user.id,
         order_history: 'ORDER HISTORY',
         slide_1: 'https://picsum.photos/id/679/200/200',
