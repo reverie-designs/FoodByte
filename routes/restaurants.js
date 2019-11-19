@@ -17,7 +17,9 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     dh(db).getAllRestaurants()
       .then(restaurants => {
-        res.render("index", {restaurants, username: req.session.user_name});
+        console.log('--------------------------------------------------',req.session.user_id);
+        let name = req.session.user_name;
+        res.render("index", {restaurants, username: name});
       })
       .catch(e => {
         console.log(e);
