@@ -46,6 +46,18 @@ module.exports = (db) => ({
       });
   },
 
+  getRandomLoginPics: function() {
+    return db.query(`
+    SELECT slide_1_url, slide_2_url, slide_3_url
+    FROM restaurants
+    ORDER BY RANDOM()
+    LIMIT 1;
+    `)
+      .then(res => {
+        return (res.rows.length > 0) ? res.rows[0] : null;
+      });
+  },
+
 });
 
 // module.exports = { getUserWithEmail, getAllRestaurants, getAllRestaurantMenuItems };

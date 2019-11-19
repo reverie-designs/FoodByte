@@ -31,24 +31,22 @@ module.exports = (db) => {
     const {name, phone, email, password} = req.body;
     login(email, password)
       .then(user => {
-        console.log("a-------------------------------------asdfsa");
         if (!user) {
           res.send({error: "error"});
           return;
         }
         // sets cookie
         req.session.user_id = user.id;
-        console.log(user);
+        // console.log(user);
         req.session.user_name = user.name;
         res.redirect("/restaurants");
-        console.log(user.name);
+        // console.log(user.name);
         // res.send({user: {name: user.name, email: user.email, phone: user.phone, id: req.session.user_id}});
       })
       .catch(e=> res.send(e));
   });
 
   router.get("/", (req, res) => {
-    console.log('--------------HEY ------------------------');
     const user = dh(db).getUserWithEmail();
     if (user) {
       req.session.user_id = user.id;
