@@ -54,10 +54,7 @@ module.exports = (db) => ({
    */
   createOrder: function(userId, restaurant_id) {
     return db.query(`
-    INSERT INTO orders (user_id, restaurant_id)
-    VALUES ($1, $2)
-    RETURNING *;
-    `, [userId, restaurant_id])
+    INSERT INTO orders(user_id, restaurant_id) VALUES ($1, $2)RETURNING *;`, [userId, restaurant_id])
       .then(res => {
         return res.rows;
       });

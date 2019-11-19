@@ -55,7 +55,8 @@
       </section>
       <section class="order">
         <h2>Your Order</h2>
-        <p>ORDER NUMBER = ASDFADFASDFG</p>
+        <% console.log(newOrder); %>
+        <p>ORDER NUMBER <%= newOrder[0].id %></p>
         <!-- ORDER FORM -->
         <form method="POST" action="/orders" class="my-2">
           <!-- EACH SELECTED MENU ITEM -->

@@ -44,10 +44,11 @@ module.exports = (db) => {
       // console.log(menu_items)
       let name = req.session.user_name;
       let userId = req.session.user_id;
-      // let newOrder = dh(db).createOrder(userId, id);
-      // console.log(newOrder.user_id);
-      res.render("orders", {menu_items, username: name})
-    })
+      dh(db).createOrder(userId, id)
+      .then(newOrder =>{
+      // console.log(newOrder);
+      res.render("orders", {menu_items, username: name, newOrder})
+      })})
     .catch(e => {
       console.log(e);
       res.send(e);
