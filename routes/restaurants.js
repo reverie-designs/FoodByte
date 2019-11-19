@@ -25,7 +25,7 @@ module.exports = (db) => {
       })
       // res.render('index', restaurants);
     // }
-  });
+  })
 
 
   // renders the specfic restaurants page
@@ -34,21 +34,36 @@ module.exports = (db) => {
     // if (!req.session.user_id) { //using cookie parser??????????
     //   res.redirect('/login');
     // } else {
-      const templateVars = {
-        user_id: 'dude',
-        item_1: {
-          title: "Fries w/ side - burger",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-        },
-        item_2: {
-          title: "BACON w/ side - bacon",
-          description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
-        }
-      };
-      res.render('orders', templateVars);
-    // }
-  });
+      let id = req.params.id;
+      console.log(id, 'THIS IS REST ID');
+      dh(db).getAllRestaurantMenuItems(id)
+      .then(menu_items => {
+        console.log(menu_items)
 
+        res.render("orders", {menu_items})
+      })
+      .catch(e => {
+        console.log(e);
+        res.send(e);
+      })
+    });
+
+    // const templateVars = {
+      //   user_id: 'dude',
+      //   item_1: {
+        //     title: "Fries w/ side - burger",
+        //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+        //   },
+        //   item_2: {
+          //     title: "BACON w/ side - bacon",
+          //     description: "Mo Bacon Mo betta, consectetur adipiscing elit, no such thing as turkey bacon incididunt ut labore et dolore magna aliqua. Vestibulum mattis ullamcorper velit sed. Aliquet porttitor lacus luctus accumsan. Massa tempor nec feugiat nisl pretium fusce id."
+          //   }
+          // };
+          // res.render('orders', templateVars);
+          // }
+
+          return router;
+        };
 
 
 
@@ -111,5 +126,3 @@ module.exports = (db) => {
   //   //   // }
   //   // });
 
-  return router;
-};

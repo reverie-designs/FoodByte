@@ -42,7 +42,7 @@ module.exports = (db) => ({
     WHERE menu_items.restaurant_id = $1;
     `, [restaurant_id])
       .then(res => {
-        return (res.rows.length > 0) ? res.rows[0] : null;
+        return res.rows;
       });
   },
 
