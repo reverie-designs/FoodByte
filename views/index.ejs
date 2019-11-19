@@ -46,12 +46,12 @@
       </section>
 
 
-    <section id="restaurants" class="text-light bg-info">
+    <section id="restaurants" class="text-light">
       <!-- RESTAURANTS  DB RENDERED -->
       <% let i='slide'%>
 
       <% for(rest of restaurants){ %>
-        <article class="d-flex justify-content-between px-5 py-3 restaurant">
+        <article class="d-flex justify-content-between px-5 py-3 restaurant bg-info">
             <!-- RESTAURANT SLIDESHOW -->
             <div id="carouselExampleIndicators<%= i %>" class="carousel slide restaurant-slideshow" data-ride="carousel">
 
@@ -81,11 +81,15 @@
                 </a>
               </div>
             <!-- RESTAURANT DESCRIPTION -->
-            <div class="rest-description pl-2 py-3">
-                <h2><%= rest.title %></h2>
-                <p class="p-lead"> <%= rest.cuisine_type %></p>
-                <p><%= rest.hours_of_operation %></p>
-            </div>
+
+              <div class="rest-description pl-2 py-3">
+                <a class="rest-link" href="/restaurants/<%=rest.id%>" title="<%= rest.title %>">
+                  <h2><%= rest.title %></h2>
+                  <p class="p-lead"> <%= rest.cuisine_type %></p>
+                  <p><%= rest.hours_of_operation %></p>
+                </a>
+              </div>
+
           </article>
           <%i+=1%>
       <% } %>
