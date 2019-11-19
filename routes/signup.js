@@ -10,6 +10,9 @@ module.exports = (db) => {
  * @param {password} user.password
  */
   router.post('/', (req, res) => {
+    if (req.session.user_id) {
+      res.redirect("/restaurants");
+    }
     console.log(req.body);
     //const {name, phone, email, password} = req.body;
     let obj = {};
