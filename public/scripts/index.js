@@ -23,3 +23,4 @@ $(function() {
     $("#totalprice").val(finalTotal);
   })
 });
+
