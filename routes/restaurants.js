@@ -31,25 +31,28 @@ module.exports = (db) => {
       });
   });
 
+ // renders the specfic restaurants page
+ router.get("/:id", (req, res) => {
+  if (!req.session.user_id) {
+    res.redirect('/login');
+  } else {
 
-  // renders the specfic restaurants page
-  router.get("/:id", (req, res) => {
-    if (!req.session.user_id) {
-      res.redirect('/login');
-    } else {
-      let id = req.params.id;
-      // console.log(id, 'THIS IS REST ID');
-      dh(db).getAllRestaurantMenuItems(id)
-        .then(menu_items => {
-          console.log(menu_items);
-          let name = req.session.user_name;
-          res.render("orders", {menu_items, username: name});
-        })
-        .catch(e => {
-          console.log(e);
-          res.send(e);
-        });
-    }
+    let id = req.params.id; //restaurant id
+    // console.log(id, 'THIS IS REST ID');
+    dh(db).getAllRestaurantMenuItems(id)
+    .then(menu_items => {
+      // console.log(menu_items)
+      let name = req.session.user_name;
+      let userId = req.session.user_id;
+      // let newOrder = dh(db).createOrder(userId, id);
+      // console.log(newOrder.user_id);
+      res.render("orders", {menu_items, username: name})
+    })
+    .catch(e => {
+      console.log(e);
+      res.send(e);
+    })
+  }
   });
 
   return router;

@@ -47,6 +47,21 @@ module.exports = (db) => ({
         return res.rows;
       });
   },
+    /**
+   * Creates a new order upon restaurant redirection with order user id and restaurant id
+   * @param {Number} restaurant_id
+   * @param {Number} userID
+   */
+  createOrder: function(userId, restaurant_id) {
+    return db.query(`
+    INSERT INTO orders (user_id, restaurant_id)
+    VALUES ($1, $2)
+    RETURNING *;
+    `, [userId, restaurant_id])
+      .then(res => {
+        return res.rows;
+      });
+  },
 
   /**
    * Adds a user to the user database.
