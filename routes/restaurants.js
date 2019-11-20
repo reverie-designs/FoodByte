@@ -1,14 +1,14 @@
 const express = require('express');
 const router  = express.Router();
 const dh = require('../helpers/dataHelpers');
-const user = {
-  "aJ48lW": {
-    name: "a",
-    email: "a@a.a",
-    phone: 1234567890,
-    password: "dish"
-  }
-};
+// const user = {
+//   "aJ48lW": {
+//     name: "a",
+//     email: "a@a.a",
+//     phone: 1234567890,
+//     password: "dish"
+//   }
+// };
 // const getAllRestaurants
 
 module.exports = (db) => {
@@ -18,7 +18,7 @@ module.exports = (db) => {
     dh(db).getAllRestaurants()
       .then(restaurants => {
         if (req.session.user_name) {
-          console.log(req.session.user_name);
+          // console.log(req.session.user_name);
           let name = req.session.user_name;
           res.render("index", {restaurants, username: name});
         } else {
@@ -44,18 +44,17 @@ module.exports = (db) => {
       // console.log(menu_items)
       let name = req.session.user_name;
       let userId = req.session.user_id;
-      // let newOrder = dh(db).createOrder(userId, id);
-      // console.log(newOrder.user_id);
-      res.render("orders", {menu_items, username: name})
-    })
+      dh(db).createOrder(userId, id)
+      .then(newOrder =>{
+      // console.log(newOrder);
+      res.render("orders", {menu_items, username: name, newOrder})
+      })})
     .catch(e => {
       console.log(e);
       res.send(e);
     })
   }
   });
-
-
 
   return router;
 };

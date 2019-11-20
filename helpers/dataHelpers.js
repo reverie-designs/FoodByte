@@ -37,13 +37,13 @@ module.exports = (db) => ({
    */
   getAllRestaurantMenuItems: function(restaurant_id) {
     return db.query(`
-    SELECT menu_items.title AS Title, *
-    FROM menu_items
-    JOIN restaurants ON restaurants.id = restaurant_id
-    WHERE menu_items.restaurant_id = $1;
+                    SELECT menu_items.title AS itemName, menu_items.id AS menuid, *
+                    FROM menu_items
+                    JOIN restaurants ON restaurants.id = restaurant_id
+                    WHERE menu_items.restaurant_id = $1;
     `, [restaurant_id])
       .then(res => {
-        console.log(res.rows);
+        // console.log(res.rows);
         return res.rows;
       });
   },
@@ -54,10 +54,7 @@ module.exports = (db) => ({
    */
   createOrder: function(userId, restaurant_id) {
     return db.query(`
-    INSERT INTO orders (user_id, restaurant_id)
-    VALUES ($1, $2)
-    RETURNING *;
-    `, [userId, restaurant_id])
+    INSERT INTO orders(user_id, restaurant_id) VALUES ($1, $2)RETURNING *;`, [userId, restaurant_id])
       .then(res => {
         return res.rows;
       });
@@ -75,6 +72,36 @@ module.exports = (db) => ({
       });
   },
 
+  /**
+   * Adds items to the order_item database.
+   * @param {Object} order
+   */
+  addOrder: function(obj, orderID){
+    //gets array of order items key value pairs 0 menu_item_id
+    let arrayKeys = Object.keys(obj).map( (key)=> {
+      return [Number(key), Number(obj[key])];
+    });
+    let values = [orderID];
+    let queryString = 'INSERT INTO order_items (menu_item_id, quantity, order_id) VALUES ';
+    let i =1;
+    arrayKeys.forEach( e => {
+      i++;
+      values.push(e[0]);
+      queryString += `($${i},`;
+      i++;
+      values.push(e[1]);
+      queryString += ` $${i},`;
+      queryString  += ` $1),`;
+    });
+
+    queryString = queryString.slice(0,-1); //remove last comma
+    queryString += ` RETURNING*;`;
+    return db.query(queryString, values)
+    .then(res => {
+      console.log('THIS IS AN INSTERTED order', res.rows);
+          return res.rows;
+        })
+      }
 });
 
 // module.exports = { getUserWithEmail, getAllRestaurants, getAllRestaurantMenuItems };
