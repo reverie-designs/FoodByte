@@ -58,8 +58,8 @@
         <h2>Your Order</h2>
 
         <!-- ORDER FORM -->
-        <form class="order-form" method="POST" action="/orders" class="my-2">
-          <input class="d-none" type="text" name="order_id" value="<%= newOrder[0].id %>">
+        <form class="order-form" method="POST" action="<%= `/orders/${newOrder[0].id}` %>" class="my-2">
+
           <!-- RENDER ORDER ITEMS -->
           <div class="form-items">
 
