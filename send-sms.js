@@ -6,14 +6,14 @@ const client = require('twilio')(accountSid, authToken);
 
 module.exports = (db) =>({
   sendSMS: function() {
-  dh(db).getOrder(1)
+  dh(db).addOrder(1)
   .then(orders => {
     console.log(orders);
   });
   client.messages.create({
-  to:   '+16477004837',
+  to:   '+16477004837', // from user
   from: '+16479300219',
-  body: 'Your order will be ready in 15 mins'
+  body: 'Your order will be ready in 15 mins' // needs to have order.id + order.status
 })
 .then((message) => console.log(message.sid));
 

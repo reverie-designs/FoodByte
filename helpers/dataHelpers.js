@@ -76,14 +76,14 @@ module.exports = (db) => ({
    * Adds items to the order_item database.
    * @param {Object} order
    */
-  addOrder: function(obj, orderID){
+  addOrder: function(obj, orderID) {
     //gets array of order items key value pairs 0 menu_item_id
     let arrayKeys = Object.keys(obj).map( (key)=> {
       return [Number(key), Number(obj[key])];
     });
     let values = [orderID];
     let queryString = 'INSERT INTO order_items (menu_item_id, quantity, order_id) VALUES ';
-    let i =1;
+    let i = 1;
     arrayKeys.forEach( e => {
       i++;
       values.push(e[0]);
