@@ -47,7 +47,7 @@
               <div class="d-flex justify-content-between">
                 <h2 class="menu-title"><%= item.itemname %></h2>
                 <p class="lead price"><%= item.price %></p>
-                <p><%= item.id %></p>
+                <p class="d-none item-id"><%= item.menuid %></p>
               </div>
               <p><%= item.description %></p>
             </article>
@@ -56,16 +56,18 @@
       </section>
       <section class="order">
         <h2>Your Order</h2>
-        <p>ORDER NUMBER <%= newOrder[0].id %></p>
+
         <!-- ORDER FORM -->
         <form class="order-form" method="POST" action="/orders" class="my-2">
+          <input class="d-none" type="text" name="order_id" value="<%= newOrder[0].id %>">
           <!-- RENDER ORDER ITEMS -->
           <div class="form-items">
 
           </div>
-          <p>Your Total <span id="totprice"></span></p>
-          <p>Tax <span id="tax"></span></p>
-          <p>Your Total with Tax <span id="total" class="total_price"></span></p>
+          <p>Your Total $<span id="totprice"></span></p>
+          <p>Tax $<span id="tax"></span></p>
+          <p>Your Total with Tax $<span id="total" class="total_price"></span></p>
+          <input type="text" name="total_price" id="totalprice" class="d-none" value="">
           <button type="submit"> Submit</button>
         </form>
       <p class="alert bg-danger text-center"> Your Order Has been Placed <br> Awaiting Confirmation</p>
