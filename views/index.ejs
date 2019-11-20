@@ -200,6 +200,16 @@
           ]
         })
 
+        addMarker()
+
+        function addMarker(coords) {
+          const marker = new google.maps.Marker({
+            position:coords,
+            map:map
+          })
+        }
+
+
         marker = new google.maps.Marker({
           map: map,
           title: 'Porchetta',
