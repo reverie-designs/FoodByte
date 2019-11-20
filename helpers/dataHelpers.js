@@ -37,13 +37,13 @@ module.exports = (db) => ({
    */
   getAllRestaurantMenuItems: function(restaurant_id) {
     return db.query(`
-    SELECT menu_items.title AS itemName, *
+    SELECT menu_items.title AS itemName, menu_items.id AS menuid, *
     FROM menu_items
     JOIN restaurants ON restaurants.id = restaurant_id
     WHERE menu_items.restaurant_id = $1;
     `, [restaurant_id])
       .then(res => {
-        console.log(res.rows);
+        // console.log(res.rows);
         return res.rows;
       });
   },
