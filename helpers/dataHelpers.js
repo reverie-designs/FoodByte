@@ -60,19 +60,35 @@ module.exports = (db) => ({
       });
   },
 
-  /**
-   * Filters a search by cuisine type.
-   * @param {string} cuisine_type.
-   */
-  getCuisine: function(cuisine) {
-    let cuisine_type = '';
-    cuisine_type = (cuisine.length >= 7) ? cuisine.slice(1, cuisine.length - 1) : cuisine; // slices the 1st and last letter of the parameter for the ILIKE (case/ insensitive like) query
-    let cuisines = []; cuisines.push(`%${cuisine_type}%`);
-    return db.query(`SELECT * FROM restaurants WHERE cuisine_type ILIKE %${cuisines.length}%`)
-      .then(res => {
-        return res.rows;
-      });
-  }
+  // /**
+  //  * Finds a list of all cuisine types.
+  //  * @param {string} cuisine_type.
+  //  */
+  // getCuisines: function() {
+  //   let cuisine_type = '';
+  //   cuisine_type = (cuisine.length >= 7) ? cuisine.slice(1, cuisine.length - 1) : cuisine; // slices the 1st and last letter of the parameter for the ILIKE (case/ insensitive like) query
+  //   let cuisines = []; cuisines.push(`%${cuisine_type}%`);
+  //   return db.query(`SELECT cuisine_type FROM restaurants WHERE cuisine_type ILIKE %${cuisines.length}% GROUP BY cuisine_type`)
+  //     .then(res => {
+  //       return res.rows;
+  //     });
+  // },
+
+  // /**
+  //  * Filters the restaurant based on cuisine type.
+  //  * @param {string} cuisine_type.
+  //  */
+  // getRestaurantsByCuisine: function(cuisine) {
+  //   return db.query(`
+  //   SELECT *
+  //   FROM restaurants
+  //   WHERE cuisine_type = $1;
+  //   `, [cuisine])
+  //     .then(res => {
+  //       console.log(res.rows);
+  //       return res.rows;
+  //     });
+  // },
 
 });
 

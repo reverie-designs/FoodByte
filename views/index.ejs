@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/096d0c019b.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/cuisines.js"></script>
     <!-- Custom JavaScript -->
     <!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
     <!-- Bootstrap JS -->
@@ -43,7 +44,21 @@
           </div>
         </div>
 
+        <!-- Cuisine type search -->
       </section>
+    <section class="cuisine container h-100">
+      <select class="selectpicker form-control mr-sm-2" placeholder="Search for a cuisine">
+        <option>All</option>
+        <option>Italian</option>
+        <option>Thai</option>
+        <option>American</option>
+      </select>
+    </section>
+
+    <!-- <form class="form-inline my-2 my-lg-0" action="/restaurants" method="POST">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search for a cuisine" aria-label="Search" onclick="myfunction()">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
 
 
     <section id="restaurants" class="text-light">
@@ -51,7 +66,7 @@
       <% let i='slide'%>
 
       <% for(rest of restaurants){ %>
-        <article class="d-flex justify-content-between px-5 py-3 restaurant bg-info">
+        <article class="d-flex justify-content-between px-5 py-3 restaurant bg-info <%=rest.cuisine_type%>">
             <!-- RESTAURANT SLIDESHOW -->
             <div id="carouselExampleIndicators<%= i %>" class="carousel slide restaurant-slideshow" data-ride="carousel">
 
@@ -85,7 +100,7 @@
               <div class="rest-description pl-2 py-3">
                 <a class="rest-link" href="/restaurants/<%=rest.id%>" title="<%= rest.title %>">
                   <h2><%= rest.title %></h2>
-                  <p class="p-lead"> <%= rest.cuisine_type %></p>
+                  <p class="p-lead"><%= rest.cuisine_type %></p>
                   <p><%= rest.hours_of_operation %></p>
                 </a>
               </div>
