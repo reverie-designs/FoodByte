@@ -1,15 +1,20 @@
 const express = require('express');
 const router  = express.Router();
+const dh = require('../helpers/dataHelpers');
 
 module.exports = (db) => {
   // send sms to owner, details - order item, qty
-  router.post("/", (req, res) => {
+  router.post("/:id", (req, res) => {
     // send sms to user , details - order confiramtion after the owner confirms
 
     if (!req.session.user_id) {
       res.redirect('/login');
     } else {
       console.log('================THIS IS ORDER', req.body);
+      dh(db).addOrder(req.body, req.params.id)
+        .then(order => {
+          res.redirect(req.headers.referer, {order});
+        })
     }
     // console.log(req); // order dtails to be sent owner
     // console.log(req.body); // order dtails to be sent owner
