@@ -1,14 +1,14 @@
 const express = require('express');
 const router  = express.Router();
 const dh = require('../helpers/dataHelpers');
-const user = {
-  "aJ48lW": {
-    name: "a",
-    email: "a@a.a",
-    phone: 1234567890,
-    password: "dish"
-  }
-};
+// const user = {
+//   "aJ48lW": {
+//     name: "a",
+//     email: "a@a.a",
+//     phone: 1234567890,
+//     password: "dish"
+//   }
+// };
 // const getAllRestaurants
 
 module.exports = (db) => {
