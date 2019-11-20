@@ -18,7 +18,7 @@ module.exports = (db) => {
     dh(db).getAllRestaurants()
       .then(restaurants => {
         if (req.session.user_name) {
-          console.log(req.session.user_name);
+          // console.log(req.session.user_name);
           let name = req.session.user_name;
           res.render("index", {restaurants, username: name});
         } else {
