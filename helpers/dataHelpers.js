@@ -72,6 +72,32 @@ module.exports = (db) => ({
       });
   },
 
+  /**
+   * Adds items to the order_item database.
+   * @param {Object} order
+   */
+  addOrder: function(obj, orderID){
+    const orderKeys = Object.keys(obj);
+    const values=[];
+    //
+    for(let item of orderKeys){
+
+      if (item !== "total_price" && item !== "order_id"){
+      values.push(obj[item]);
+      console.log('this is item', item);
+      }
+    }
+    db.query(`INSERT INTO order_items(menu_item_id, order_id, quantity)`, values)
+
+//       "INSERT INTO order_items (menu_item, order_id, quantity) VALUES $1", values
+// `(${}, ${}, ${}),`
+
+
+.then(res => {
+      return true;
+    })
+  }
 });
+
 
 // module.exports = { getUserWithEmail, getAllRestaurants, getAllRestaurantMenuItems };
