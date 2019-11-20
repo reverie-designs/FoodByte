@@ -11,6 +11,7 @@ module.exports = (db) => {
       res.redirect('/login');
     } else {
       console.log('================THIS IS ORDER', req.body);
+      console.log('THIS IS order-id', req.params.id);
       dh(db).addOrder(req.body, req.params.id)
         .then(order => {
           res.redirect(req.headers.referer, {order});
@@ -21,7 +22,7 @@ module.exports = (db) => {
     // function required to link the users number to the order for sms confirmation/ sending
     // req.session.user_id = req.params.id;
     // let restaurant_id = req.headers.referer.replace("http://localhost:8080/restaurants/", "");
-    res.redirect(req.headers.referer);// redirects to restraunts/:id page
+    // res.redirect('/restaurants');// redirects to restraunts/:id page
   });
   return router;
 };
