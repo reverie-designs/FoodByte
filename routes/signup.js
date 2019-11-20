@@ -13,11 +13,9 @@ module.exports = (db) => {
     if (req.session.user_id) {
       res.redirect("/restaurants");
     }
-    console.log(req.body);
     //const {name, phone, email, password} = req.body;
     let obj = {};
     obj.name = req.body.name; obj.phone = req.body.phone; obj.email = req.body.email; obj.password = req.body.password;
-    console.log(obj);
     dh(db).addUser(obj)
       .then(user => {
         if (!user) {

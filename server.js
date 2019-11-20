@@ -42,6 +42,7 @@ app.use(cookieSession({
 const widgetsRoutes = require("./routes/widgets");
 const restaurantRoutes = require("./routes/restaurants");
 const loginRoutes = require("./routes/login");
+const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const signupRoutes = require("./routes/signup");
 
@@ -59,6 +60,7 @@ app.use("/restaurants", restaurantRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/orders", ordersRoutes(db));
 app.use("/signup", signupRoutes(db));
+app.use("/logout", logoutRoutes());
 // Note: mount other resources here, using the same pattern above
 
 
@@ -69,12 +71,6 @@ app.use("/signup", signupRoutes(db));
 app.get("/", (req, res) => {
   res.redirect("/restaurants");
 });
-
-// // needs to be moved to its own resource
-// app.post('/logout', (req, res) => {
-//   delete req.session.user_id;
-//   res.redirect("/restaurants");
-// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
