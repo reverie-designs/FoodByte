@@ -23,15 +23,16 @@ module.exports = (db) => {
     login(email, password)
       .then(user => {
         if (!user) {
-          res.send({error: "error"});
-          return;
+          res.redirect("/login"); // checks to see if a password exists for this user
+          // res.send({error: "error"});
+          // return;
         }
         // sets cookie
         req.session.user_id = user.id;
         req.session.user_name = user.name;
         res.redirect("/restaurants");
       })
-      .catch(e=> res.send(e));
+      .catch(() => res.redirect('/login')); // redirects if the email doesnt exist
   });
 
   router.get("/", (req, res) => {

@@ -46,6 +46,7 @@ const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const signupRoutes = require("./routes/signup");
 const confirmRoutes = require("./routes/confirm");
+// const errorRoutes = require("./routes/error"); // for future error handling implmentation
 
 // const dataHelpers = require(".");
 
@@ -62,6 +63,7 @@ app.use("/orders", ordersRoutes(db));
 app.use("/signup", signupRoutes(db));
 app.use("/logout", logoutRoutes());
 app.use("/confirm", confirmRoutes(db));
+// app.use("/error", errorRoutes()); // for future error handling implementation
 // Note: mount other resources here, using the same pattern above
 
 
