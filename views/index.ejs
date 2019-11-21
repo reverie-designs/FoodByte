@@ -17,7 +17,12 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/cuisines.js"></script>
     <!-- Custom JavaScript -->
-    <!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
+    <script type="text/javascript" src="/scripts/index.js"></script>
+    <!-- GOOGLE MAPS -->
+    <script type="text/javascript" src="/scripts/map.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq1DvTND8QRtADeWAC1vkrp-yauIXoKqc&callback=initMap">
+    </script>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -43,8 +48,9 @@
             </div>
           </div>
         </div>
-          <!-- Cuisine type search -->
+
     </section>
+     <!-- Cuisine type search -->
     <section class="cuisine container h-100">
       <select class="selectpicker form-control mr-sm-2" placeholder="Search for a cuisine">
         <option>All</option>
@@ -53,9 +59,9 @@
         <option>American</option>
       </select>
     </section>
-      <!-- RESTAURANT DESCRIPTION -->
 
-      <section id="restaurants" class="text-light">
+      <!-- RESTAURANTS-->
+      <section id="restaurants" class="text-light restaurant-box">
         <!-- RESTAURANTS  DB RENDERED -->
         <% let i='slide'%>
 
@@ -102,203 +108,19 @@
             </article>
             <%i+=1%>
         <% } %>
-
-      </section>
-
   </section>
 
   <!--Map-->
 
-  <div>
-    <h1>FoodByte Vendors</h1>
-    <style>
-      #map {
-        height: 700px;
-        width: 100%
-      }
-    </style>
+  <div class="map-box mt-4">
     <div id="map"></div>
-    <script>
-      function initMap() {
-        const map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 17,
-          center: { lat: 43.6445, lng: -79.3988 },
-          mapTypeId: 'hybrid',
-          styles: [
-
-            {
-              featureType: "poi",
-              stylers: [
-                { visibility: "off" }]
-            },
-
-            { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-            { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-            { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-            {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#d59563' }]
-            },
-            {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#d59563' }]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{ color: '#263c3f' }]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#6b9a76' }]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{ color: '#38414e' }]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{ color: '#212a37' }]
-            },
-            {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#9ca5b3' }]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{ color: '#746855' }]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{ color: '#1f2835' }]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#f3d19c' }]
-            },
-            {
-              featureType: 'transit',
-              stylers: [{ color: '#2f3948' }, { visibility: 'off' }]
-            },
-            {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#d59563' }]
-            },
-            {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{ color: '#17263c' }]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#515c6d' }]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{ color: '#17263c' }]
-            }
-          ]
-        });
-
-        addMarker({
-          coords: { lat: 43.644708, lng: -79.402360 },
-          iconImage: {
-            url: '/database_photos/users/lighthouse.png', // url
-            scaledSize: new google.maps.Size(150, 150), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-          },
-          content: '<h1>Lighthouse Labs</h1>'
-        }); // Lighthouse
-        addMarker({
-          coords: { lat: 43.644643, lng: -79.398838 },
-          iconImage: {
-            url: '/database_photos/users/002-meat.png', // url
-            scaledSize: new google.maps.Size(50, 50), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-          },
-          content: '<h1><a href="http://localhost:8080/restaurants/1">Porchetta & Co.</a></h1>'
-        }); // Porchetta
-        addMarker({
-          coords: { lat: 43.644405, lng: -79.399598 },
-          iconImage: {
-            url: '/database_photos/users/044-burger.png', // url
-            scaledSize: new google.maps.Size(50, 50), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-          },
-          content: '<h1><a href="http://localhost:8080/restaurants/2">Big Smoke Burger</a></h1>'
-        }); // Big Smoke Burger
-        addMarker({
-          coords: { lat: 43.644165, lng: -79.400946 },
-          iconImage: {
-            url: '/database_photos/users/004-pizza.png', // url
-            scaledSize: new google.maps.Size(50, 50), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-          },
-          content: '<h1><a href="http://localhost:8080/restaurants/4">Pizzaiolo</a></h1>'
-        }); // Pizzaiolo
-        addMarker({
-          coords: { lat: 43.643764, lng: -79.402986 },
-          iconImage: {
-            url: '/database_photos/users/045-noodles.png', // url
-            scaledSize: new google.maps.Size(50, 50), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-          },
-          content: '<h1><a href="http://localhost:8080/restaurants/3">Coco Rice Thai Cuisine</a></h1>'
-        }); // Coco Rice Thai Cuisine
-
-        function addMarker(props) {
-          const marker = new google.maps.Marker({
-            position: props.coords,
-            map: map,
-            animation: google.maps.Animation.DROP,
-            icon: props.iconImage
-          });
-          if (props.iconImage) {
-            marker.setIcon(props.iconImage);
-          }
-
-          const infoWindow = new google.maps.InfoWindow({
-            content: props.content
-          })
-            marker.addListener('click', function () {
-              infoWindow.open(map, marker);
-              setTimeout(function(){infoWindow.close();}, '2000');
-            });
-
-
-
-          };
-
-        };
-
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq1DvTND8QRtADeWAC1vkrp-yauIXoKqc&callback=initMap">
-      </script>
-
   </div>
 
-  <!--Map-->
+  <!--END MAP-->
 
-  <footer class="text-light text-center">
+  <!-- <footer class="text-light text-center">
     <p><small> FoodByte created By Herm, Arv, Dasha For Lighthouse Labs 2019</small></p>
-  </footer>
+  </footer> -->
+
 </body>
 </html>
