@@ -31,31 +31,47 @@
 
     <section class="restaurant-banner text-light text-center">
         <div>
-          <img class="cover-photo-url" src="/<%= menu_items[0].cover_photo_url %>" alt="Restaurant Name" width="1000" height="450">
+          <img class="cover-photo-url" src="/<%= menu_items[0].cover_photo_url %>" alt="Restaurant Name">
         </div>
-        <% console.log(menu_items[0].cover_photo_url); %>
-        <h1 class="text-center text-light"> <%= menu_items[0].title %> </h1>
-        <p class="lead"></p>
-        <p><span class="lead"> <%= menu_items[0].phone %> </span> <br> <span></span> <span> <%= menu_items[0].street %> </span> <br><span><%= menu_items[0].city %></span> <span><%= menu_items[0].province %></span> <span><%= menu_items[0].post_code %></span></p>
+        <div class="bg-info py-3">
+          <% console.log(menu_items[0].cover_photo_url); %>
+          <h1 class="text-center text-light"> <%= menu_items[0].title %> </h1>
+          <p class="lead"></p>
+          <%
+              const phone = menu_items[0].phone;
+              let newPhone = '';
+              let ff = (phone.slice(0,3))+'-';
+              let tt = (phone.slice(3,6))+'-';
+              let nn = (phone.slice(6,10));
+              newPhone += ff+tt+nn;
+          %>
+          <p>
+            <span class="lead"> <%= newPhone %> </span> <br>
+            <span> <%= menu_items[0].street %> </span> <br>
+            <span><%= menu_items[0].city %></span>
+            <span><%= menu_items[0].province %></span>
+            <span><%= menu_items[0].post_code %></span>
+          </p>
+      </div>
       </section>
     <main class="d-flex justify-content-between px-5 py-3 text-light">
       <section class="menu-items mx-5 my-2">
         <!-- RENDER MENU ITEM -->
           <% for (let item of menu_items) { %>
             <!-- MENUT ITEM -->
-            <article class="menu-item">
+            <article class="menu-item bg-info">
               <div class="d-flex justify-content-between">
-                <h2 class="menu-title"><%= item.itemname %></h2>
-                <p class="lead price"><%= item.price %></p>
+                <h2 class="menu-title text-center"><%= item.itemname %></h2>
+                <p class="lead price" data-item-id="<%= item.menuid %>"><%= item.price %></p>
                 <p class="d-none item-id"><%= item.menuid %></p>
               </div>
-              <p><%= item.description %></p>
+              <p class="item-description"><%= item.description %></p>
             </article>
             <% } %>
           <!-- END MENUT ITEM -->
       </section>
       <section class="order">
-        <h2>Your Order</h2>
+        <h2 class="text-center order-title">Your Order</h2>
 
         <!-- ORDER FORM -->
         <form class="order-form" method="POST" action="<%= `/orders/${newOrder[0].id}` %>" class="my-2">
@@ -64,13 +80,16 @@
           <div class="form-items">
 
           </div>
-          <p>Your Total $<span id="totprice"></span></p>
-          <p>Tax $<span id="tax"></span></p>
-          <p>Your Total with Tax $<span id="total" class="total_price"></span></p>
 
-          <button type="submit"> Submit</button>
+          <p class="line clear-fix">Your Total: $<span class="space float-right" id="totprice"></span></p>
+          <p class="line">Tax: $<span class="space float-right" id="tax"></span></p>
+          <p class="line">Your Total with Tax: $<span id="total" class="total_price space float-right"></span></p>
+
+          <button class="btn btn-info order-btn btn-block" type="submit"> Submit</button>
         </form>
-      <p class="alert bg-danger text-center"> Your Order Has been Placed <br> Awaiting Confirmation</p>
+        <div class="w-75 m-auto">
+          <p class="bg-danger text-center my-3"> Your Order Has been Placed <br> Awaiting Confirmation</p>
+        </div>
     </section>
   </main>
 
