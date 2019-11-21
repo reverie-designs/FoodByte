@@ -1,28 +1,24 @@
 const express = require('express');
 const router  = express.Router();
 const dh = require('../helpers/dataHelpers');
-// const user = {
-//   "aJ48lW": {
-//     name: "a",
-//     email: "a@a.a",
-//     phone: 1234567890,
-//     password: "dish"
-//   }
-// };
-// const getAllRestaurants
+
 
 module.exports = (db) => {
-  // populates the restaurants home page restaurants
+  // populates the restaurants home page
   // get request for the page
   router.get("/", (req, res) => {
+
     dh(db).getAllRestaurants()
       .then(restaurants => {
         if (req.session.user_name) {
-          // console.log(req.session.user_name);
-          let name = req.session.user_name;
-          res.render("index", {restaurants, username: name});
+          let userId = req.session.user_id;
+          dh(db).getOrderTime(userId)
+            .then(time => {
+              let name = req.session.user_name;
+              res.render("index", {restaurants, username: name, duration: time});
+            });
         } else {
-          res.render("index", {restaurants, username: null});
+          res.render("index", {restaurants, username: null, duration: null});
         }
       })
       .catch(e => {

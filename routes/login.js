@@ -27,12 +27,9 @@ module.exports = (db) => {
           return;
         }
         // sets cookie
-        // console.log(user);
         req.session.user_id = user.id;
         req.session.user_name = user.name;
         res.redirect("/restaurants");
-        console.log(user.name);
-        // res.send({user: {name: user.name, email: user.email, phone: user.phone, id: req.session.user_id}});
       })
       .catch(e=> res.send(e));
   });
@@ -46,15 +43,14 @@ module.exports = (db) => {
       req.session.user_id = user.id;
       let templateVars = {
         username: null,
-        // user_id: user.id,
+        duration: null,
         order_history: 'ORDER HISTORY',
         slide_1: 'https://picsum.photos/id/679/200/200',
         slide_2: 'https://picsum.photos/id/679/200/200',
         slide_3: 'https://picsum.photos/id/679/200/200'
       };
-      // console.log(user);
       res.render("login", templateVars);
-      // res.redirect("/restaurants");
+
     }
 
   });
