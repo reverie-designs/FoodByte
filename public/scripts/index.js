@@ -1,12 +1,12 @@
 const addOrderItem = (title, price, id) =>{
   return `<div class="dp-flex justify-content-between text-light ord-item">
   <label class="pr-2">${title}</label>
-  <input data-input-id="${id}" type="number" name="${id}" min="0" max="100" step="1" size="2" class="float-right quantity"><br> <p class="text-right clear-fix w-100 item-price">${price}</p>
+  <input type="number" data-input-id="${id}"  value="1" name="${id}" min="0" max="100" step="1" size="2" class="float-right quantity"><br> <p class="text-right clear-fix w-100 item-price">${price}</p>
   </div>`;
 };
 let total = 0;
 let value = 1;
-
+let priceArray=[];
 const getTotal = (price) => {
   total = total + (price);
   let itemTotal = total.toFixed(2);
@@ -17,6 +17,7 @@ const getTotal = (price) => {
   $(".total_price").text(finalTotal);
   $("#totalprice").val(finalTotal);
 };
+
 $(function() {
   $('.menu-item').on('click', function(event) {
 
@@ -25,8 +26,8 @@ $(function() {
     let $title = $(this).find(".menu-title").text();
     let $price = $(this).find(".price").text();
     let sterPrice = Number($price.slice(1));
-    sterPrice = sterPrice*value;
-    getTotal(sterPrice);
+
+    // getTotal(sterPrice);
     // total = total + (sterPrice * Number(value));
     let $id = $(this).find(".item-id").text();
     // let itemTotal = total.toFixed(2);
@@ -37,24 +38,29 @@ $(function() {
     // $("#tax").text(tax);
     // $(".total_price").text(finalTotal);
     // $("#totalprice").val(finalTotal);
-  })
-  // $(".form-items").on("change", "input", function(event) {
-  //   value = $(this).val(); //incremented input value
-  //   // alert(value);
-  // });
+  });
 
+
+  //updates
   $(".form-items").on("change", "input", function(event) {
     const increment= $(this).val();
     const itemId = $(this).attr("data-input-id");
-    console.log(itemId);
+    // console.log(itemId);
     const itemPrice = $(".menu-items").find(`[data-item-id="${itemId}"]`).text();
-    console.log(itemPrice);
+    // console.log(itemPrice);
     let sterPrice = Number(itemPrice.slice(1));
     let price = sterPrice * increment;
+    console.log('THIS IS PRICE', price);
     price = price.toFixed(2);
+    total = Number(total) + Number(price);
+    let itemTotal = Number(total).toFixed(2);
+    console.log('TOTAL',itemTotal);
     $(this).siblings(".item-price").text(`$ ${price}`);
-    getTotal(price);
-  })
+
+    // $("#totprice").text(itemTotal);
+
+
+  });
 
 });
 
