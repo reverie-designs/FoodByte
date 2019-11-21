@@ -14,7 +14,8 @@ module.exports = (db) => {
       console.log('THIS IS order-id', req.params.id);
       dh(db).addOrder(req.body, req.params.id)
         .then(order => {
-          res.redirect(req.headers.referer, {order});
+          // res.redirect(req.headers.referer, {order});
+            res.redirect('/restaurants');
         })
     }
     // console.log(req); // order dtails to be sent owner
