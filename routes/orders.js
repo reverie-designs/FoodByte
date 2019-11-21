@@ -11,7 +11,7 @@ module.exports = (db) => {
   // send sms to owner, details - order item, qty
   router.post("/:id", (req, res) => {
     // send sms to user , details - order confiramtion after the owner confirms
-
+    //https://119e4733.ngrok.io - online server https://1a1190a3.ngrok.io  herms number +16477004837'
     if (!req.session.user_id) {
       res.redirect('/login');
     } else {
@@ -21,15 +21,15 @@ module.exports = (db) => {
       dh(db).addOrder(req.body, req.params.id)
         .then(order => {
           client.messages.create({
-            to:   '+16477004837', // restaurants side
-            from: '+16479300219',
-            body: `NEW ORDER ${id}`
-          });
-          client.messages.create({
             to:   '+16479686754', // restaurants side
             from: '+16479300219',
-            body: `your order has been placed. you are ${id} in line`
+            body: `Go to this link - 1a1190a3.ngrok.io/confirm/${id}`
           });
+          // client.messages.create({
+          //   to:   '+16479686754', // restaurants side
+          //   from: '+16479300219',
+          //   body: `your order has been placed. you are ${id} in line`
+          // });
           res.redirect(req.headers.referer, {order});
         });
     }

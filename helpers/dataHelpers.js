@@ -97,11 +97,28 @@ module.exports = (db) => ({
     queryString = queryString.slice(0,-1); //remove last comma
     queryString += ` RETURNING*;`;
     return db.query(queryString, values)
-    .then(res => {
-      console.log('THIS IS AN INSTERTED order', res.rows);
-          return res.rows;
-        });
-      }
+      .then(res => {
+        console.log('THIS IS AN INSTERTED order', res.rows);
+        return res.rows;
+      });
+  },
+
+  /**
+   * Sets the status value timestamp for the order.id in orders to now.
+   * @param {number} id - orders.id
+   */
+  setStatus: function(id) {
+    return db.query(`
+    UPDATE orders
+    SET status = now()
+    WHERE orders.id = $1;
+    RETURNING status`
+    , [id])
+      .then(res => {
+        return res.rows[0];
+      });
+  },
+
 });
 
 // module.exports = { getUserWithEmail, getAllRestaurants, getAllRestaurantMenuItems };

@@ -45,7 +45,7 @@ const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const signupRoutes = require("./routes/signup");
-
+const confirmRoutes = require("./routes/confirm");
 
 // const dataHelpers = require(".");
 
@@ -61,6 +61,7 @@ app.use("/login", loginRoutes(db));
 app.use("/orders", ordersRoutes(db));
 app.use("/signup", signupRoutes(db));
 app.use("/logout", logoutRoutes());
+app.use("/confirm", confirmRoutes());
 // Note: mount other resources here, using the same pattern above
 
 
