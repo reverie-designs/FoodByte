@@ -61,7 +61,7 @@ app.use("/login", loginRoutes(db));
 app.use("/orders", ordersRoutes(db));
 app.use("/signup", signupRoutes(db));
 app.use("/logout", logoutRoutes());
-app.use("/confirm", confirmRoutes());
+app.use("/confirm", confirmRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 

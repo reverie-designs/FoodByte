@@ -22,5 +22,9 @@ $(function() {
     $(".total_price").text(finalTotal);
     $("#totalprice").val(finalTotal);
   })
+
+  // $(".order-form").on("submit", function(e){
+  //   e.preventDefault();
+  // })
 });
 

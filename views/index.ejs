@@ -30,6 +30,11 @@
     <!-- END NAVIGATION -->
 
     <!-- Welcome Box -->
+    <% if (username) { %>
+    <p class="time-alert text-light">ORDER <%= duration.time%></p>
+    <% } else { %>
+      <p class="time-alert text-light">ORDER</p>
+    <%} %>
     <section class="header">
         <div class="overlay"></div>
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">

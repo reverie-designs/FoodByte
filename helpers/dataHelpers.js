@@ -30,7 +30,6 @@ module.exports = (db) => ({
       });
   },
 
-  // module.exports= {getAllRestaurants};
   /**
    * Populates the restaurants_show page with the title,..., menu_items.
    * @param {Number} restaurant_id
@@ -47,7 +46,7 @@ module.exports = (db) => ({
         return res.rows;
       });
   },
-    /**
+  /**
    * Creates a new order upon restaurant redirection with order user id and restaurant id
    * @param {Number} restaurant_id
    * @param {Number} userID
@@ -78,13 +77,13 @@ module.exports = (db) => ({
    */
   addOrder: function(obj, orderID) {
     //gets array of order items key value pairs 0 menu_item_id
-    let arrayKeys = Object.keys(obj).map( (key)=> {
+    let arrayKeys = Object.keys(obj).map((key)=> {
       return [Number(key), Number(obj[key])];
     });
     let values = [orderID];
     let queryString = 'INSERT INTO order_items (menu_item_id, quantity, order_id) VALUES ';
     let i = 1;
-    arrayKeys.forEach( e => {
+    arrayKeys.forEach(e => {
       i++;
       values.push(e[0]);
       queryString += `($${i},`;
@@ -107,13 +106,65 @@ module.exports = (db) => ({
    * Sets the status value timestamp for the order.id in orders to now.
    * @param {number} id - orders.id
    */
-  setStatus: function(id) {
+  setOrderStatus: function(id) {
     return db.query(`
     UPDATE orders
     SET status = now()
-    WHERE orders.id = $1;
-    RETURNING status`
-    , [id])
+    WHERE orders.id = $1
+    RETURNING orders.id
+    `, [id])
+      .then(res => {
+        return res.rows[0];
+      });
+  },
+
+  /**
+   * returns the time of the latest order_id.
+   * @param {Number} user_id
+   */
+  getOrderTime: function(user_id) {
+    return db.query(`
+    SELECT time
+    FROM orders
+    WHERE user_id = $1
+    ORDER BY orders.id DESC
+    LIMIT 1;
+    `, [user_id])
+      .then(res => {
+        return res.rows[0];
+      });
+  },
+
+  /**
+   * Sets the time column value when the restaurant responds with a duration of order.
+   * @param {Number} time in minutes
+   * @param {Number} id
+   */
+
+  setOrderTime: function(time, id) {
+    return db.query(`
+    UPDATE orders
+    SET time = $1
+    WHERE id = $2
+    `, [time, id])
+      .then(res => {
+        return res.rows[0];
+      });
+  },
+
+  /**
+   * returns all the previous orders placed by a certain user.
+   * @param {number} id - users.id
+   */
+  GetOrderHistoryFromId: function(id) {
+    return db.query(`
+    SELECT restaurants.title, menu_items.title, DATE(status) AS Date
+    FROM restaurants
+      JOIN menu_items ON restaurants.id = menu_items.restaurant_id
+      JOIN orders ON restaurants.id = orders.restaurant_id
+    WHERE orders.user_id = 1
+    ORDER BY restaurants.title;
+    `, [id])
       .then(res => {
         return res.rows[0];
       });
