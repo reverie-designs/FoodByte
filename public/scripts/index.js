@@ -69,7 +69,8 @@ const getQuntity = () => {
 $(function() {
   const $submit = $("#orderSubmit");
   $submit.on('click', function () {
+    event.preventDefault()
     $("#orderAlert").css('visibility', 'visible')
     $('.order-form').fadeOut('slow')
-  })
+    setTimeout(function(){ $('.order-form').submit(); }, 3000);})
 });
