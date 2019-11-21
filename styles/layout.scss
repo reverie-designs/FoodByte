@@ -33,7 +33,7 @@ body {
 
 }
 .rest-description{
-  width: 50%;
+  // width: 50%;
   text-align: center;
 
 }
@@ -41,7 +41,7 @@ body {
   color: black !important;
 }
 .restaurant-slideshow {
-  width: 50%;
+  // width: 50%;
   height: 250px;
 }
 .map-box{
@@ -128,6 +128,24 @@ label {
 }
 .login-main{
   width: 80%;
+}
+
+// .carousel-inner{
+//   width:100%;
+//   height: inherit;
+//   // max-height: 300px !important;
+// }
+// .slide {
+//   width: 100%;
+// }
+
+.carousel-inner {
+  height: 350px;
+}
+
+.carousel-item * img{
+    min-height: 300px;
+    width: auto;
 }
 
 //ORDERS EJS
