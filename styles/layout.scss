@@ -7,7 +7,9 @@ body {
     color: #244751;
   }
 }
-
+ .blue{
+  color: #18A2B8 !important;
+}
 .jumbotron{
   padding: 40%;
 }
@@ -20,6 +22,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+.restaurant-box{
+  width:100%;
 }
 .restaurant {
   width: 90%;
@@ -39,13 +44,20 @@ body {
   width: 50%;
   height: 250px;
 }
-
+.map-box{
+  width: 100%;
+}
+#map {
+  height: 700px;
+  width: 100%
+}
 footer {
-  position: fixed;
-  bottom: 0;
+  // position: fixed;
+  // bottom: 0;
   width: 100%;
   padding: 2px 0;
   background-color:black;
+  z-index: 1000;
 }
 .header {
   position: relative;
@@ -91,6 +103,10 @@ footer {
   margin-top: 20px !important;
   margin-bottom: 20px !important;
   overflow: hidden;
+  border-radius: 10px;
+}
+.restaurant-slideshow{
+ overflow: hidden;
 }
 //LOGIN PAGE
 
@@ -115,11 +131,25 @@ label {
 }
 
 //ORDERS EJS
+.menu-item{
+  padding: 2%;
+  margin: 2% 0 !important;
+  cursor: pointer;
+}
+.menu-item:hover{
+  background-color: #183438 !important;
+}
 
 .menu-items , .order {
   width: 50%;
 }
 
+.ord-item label {
+  font-size: 1.2em;
+}
+.item-description{
+  font-size: 1.2em;
+}
 .item-title{
   width: 50% !important;
 }
@@ -129,7 +159,17 @@ label {
 .alert {
   width: 50%;
 }
+.order-btn {
+  font-size: 1.1em;
+}
 
+.order-title{
+  border-bottom: 2px solid white;
+}
+.line{
+  font-size: 1.2em;
+  border-bottom: 2px solid white;
+}
 // =================MEDIA QUERIES
 @media (pointer: coarse) and (hover: none) {
   .header {
@@ -137,5 +177,16 @@ label {
   }
   .header video {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .map-box{
+    width: 60%;
+    float: right;
+  }
+  .restaurant-box{
+    width:40%;
+    float: left;
   }
 }
