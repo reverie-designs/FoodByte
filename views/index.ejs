@@ -51,7 +51,7 @@
 
     </section>
      <!-- Cuisine type search -->
-    <section class="cuisine container h-100">
+    <section class="cuisine container h-100 mt-3">
       <select class="selectpicker form-control mr-sm-2" placeholder="Search for a cuisine">
         <option>All</option>
         <option>Italian</option>
@@ -66,7 +66,7 @@
         <% let i='slide'%>
 
         <% for(rest of restaurants){ %>
-          <article class="d-flex justify-content-between px-5 py-3 restaurant bg-info <%=rest.cuisine_type%>">
+          <article class="px-5 py-3 restaurant bg-info <%=rest.cuisine_type%>">
               <!-- RESTAURANT SLIDESHOW -->
               <div id="carouselExampleIndicators<%= i %>" class="carousel slide restaurant-slideshow" data-ride="carousel">
 
@@ -77,13 +77,13 @@
                   </ol>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img class="d-block w-100" src="<%= rest.slide_3_url %>" alt="First slide for <%= rest.title %>">
+                          <img class="slide img-fluid" src="<%= rest.slide_3_url %>" alt="First slide for <%= rest.title %>">
                     </div>
                     <div class="carousel-item">
-                      <img class="d-block w-100" src='<%= rest.slide_2_url %>' alt="Second slide for <%= rest.title %>">
+                      <img class="slide img-fluid" src='<%= rest.slide_2_url %>' alt="Second slide for <%= rest.title %>">
                     </div>
                     <div class="carousel-item">
-                      <img class="d-block w-100" src="<%= rest.slide_1_url %>" alt="Third slide for <%= rest.title %>">
+                      <img class="slide img-fluid" src="<%= rest.slide_1_url %>" alt="Third slide for <%= rest.title %>">
                     </div>
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators<%= i %>" role="button" data-slide="prev">
@@ -97,10 +97,10 @@
                 </div>
               <!-- RESTAURANT DESCRIPTION -->
 
-                <div class="rest-description pl-2 py-3">
+                <div class="rest-description pt-2">
                   <a class="rest-link" href="/restaurants/<%=rest.id%>" title="<%= rest.title %>">
                     <h2><%= rest.title %></h2>
-                    <p class="p-lead "> <%= rest.cuisine_type %></p>
+                    <p class="p-lead "> <%= rest.cuisine_type %>  <span></span></p>
                     <p><%= rest.hours_of_operation %></p>
                   </a>
                 </div>
