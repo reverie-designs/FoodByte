@@ -5,12 +5,12 @@ $(document).ready(function() {
     let selection = this.value;
     console.log(selection);
     if (selection === 'All') {
-      $("article").removeClass("d-none").addClass("d-flex");
+      $("article").removeClass("d-none").addClass("d-block");
     } else {
       let unselectedType = type.filter(cuisines => cuisines !== selection);
-      $("article").removeClass("d-none").addClass("d-flex");
+      $("article").removeClass("d-none").addClass("d-block");
       for (let c of unselectedType) {
-        $(`#restaurants .${c}`).removeClass("d-flex").addClass("d-none");
+        $(`#restaurants .${c}`).removeClass("d-block").addClass("d-none");
       }
     }
   }));

@@ -17,7 +17,12 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/cuisines.js"></script>
     <!-- Custom JavaScript -->
-    <!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
+    <script type="text/javascript" src="/scripts/index.js"></script>
+    <!-- GOOGLE MAPS -->
+    <script type="text/javascript" src="/scripts/map.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq1DvTND8QRtADeWAC1vkrp-yauIXoKqc&callback=initMap">
+    </script>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -44,9 +49,9 @@
           </div>
         </div>
 
-        <!-- Cuisine type search -->
-      </section>
-    <section class="cuisine container h-100">
+    </section>
+     <!-- Cuisine type search -->
+    <section class="cuisine container h-100 mt-3">
       <select class="selectpicker form-control mr-sm-2" placeholder="Search for a cuisine">
         <option>All</option>
         <option>Italian</option>
@@ -55,61 +60,67 @@
       </select>
     </section>
 
-    <!-- <form class="form-inline my-2 my-lg-0" action="/restaurants" method="POST">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search for a cuisine" aria-label="Search" onclick="myfunction()">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
+      <!-- RESTAURANTS-->
+      <section id="restaurants" class="text-light restaurant-box">
+        <!-- RESTAURANTS  DB RENDERED -->
+        <% let i='slide'%>
 
+        <% for(rest of restaurants){ %>
+          <article class="px-5 py-3 restaurant bg-info <%=rest.cuisine_type%>">
+              <!-- RESTAURANT SLIDESHOW -->
+              <div id="carouselExampleIndicators<%= i %>" class="carousel slide restaurant-slideshow" data-ride="carousel">
 
-    <section id="restaurants" class="text-light">
-      <!-- RESTAURANTS  DB RENDERED -->
-      <% let i='slide'%>
-
-      <% for(rest of restaurants){ %>
-        <article class="d-flex justify-content-between px-5 py-3 restaurant bg-info <%=rest.cuisine_type%>">
-            <!-- RESTAURANT SLIDESHOW -->
-            <div id="carouselExampleIndicators<%= i %>" class="carousel slide restaurant-slideshow" data-ride="carousel">
-
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src="<%= rest.slide_3_url %>" alt="First slide for <%= rest.title %>">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators<%= i %>" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                          <img class="slide img-fluid" src="<%= rest.slide_3_url %>" alt="First slide for <%= rest.title %>">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="slide img-fluid" src='<%= rest.slide_2_url %>' alt="Second slide for <%= rest.title %>">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="slide img-fluid" src="<%= rest.slide_1_url %>" alt="Third slide for <%= rest.title %>">
+                    </div>
                   </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src='<%= rest.slide_2_url %>' alt="Second slide for <%= rest.title %>">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="<%= rest.slide_1_url %>" alt="Third slide for <%= rest.title %>">
-                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators<%= i %>" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators<%= i %>" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators<%= i %>" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators<%= i %>" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            <!-- RESTAURANT DESCRIPTION -->
+              <!-- RESTAURANT DESCRIPTION -->
 
-              <div class="rest-description pl-2 py-3">
-                <a class="rest-link" href="/restaurants/<%=rest.id%>" title="<%= rest.title %>">
-                  <h2><%= rest.title %></h2>
-                  <p class="p-lead "> <%= rest.cuisine_type %></p>
-                  <p><%= rest.hours_of_operation %></p>
-                </a>
-              </div>
+                <div class="rest-description pt-2">
+                  <a class="rest-link" href="/restaurants/<%=rest.id%>" title="<%= rest.title %>">
+                    <h2><%= rest.title %></h2>
+                    <p class="p-lead "> <%= rest.cuisine_type %>  <span></span></p>
+                    <p><%= rest.hours_of_operation %></p>
+                  </a>
+                </div>
 
-          </article>
-          <%i+=1%>
-      <% } %>
+            </article>
+            <%i+=1%>
+        <% } %>
+  </section>
 
-    </section>
-    <footer class="text-light text-center"> <p><small> FoodByte created By Herm, Arv, Dasha For Lighthouse Labs 2019</small></p></footer>
-  </body>
+  <!--Map-->
+
+  <div class="map-box mt-4">
+    <div id="map"></div>
+  </div>
+
+  <!--END MAP-->
+
+  <!-- <footer class="text-light text-center">
+    <p><small> FoodByte created By Herm, Arv, Dasha For Lighthouse Labs 2019</small></p>
+  </footer> -->
+
+</body>
 </html>
