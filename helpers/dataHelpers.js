@@ -100,7 +100,7 @@ module.exports = (db) => ({
     .then(res => {
       console.log('THIS IS AN INSTERTED order', res.rows);
           return res.rows;
-        })
+        });
       }
 });
 
