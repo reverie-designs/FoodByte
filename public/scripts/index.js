@@ -1,3 +1,5 @@
+import { NONAME } from "dns";
+
 const addOrderItem = (title, price, id) =>{
   return `<div class="dp-flex justify-content-between text-light ord-item">
   <label class="pr-2">${title}</label>
@@ -60,7 +62,15 @@ $(function() {
 
 
 
-const getQuntity = () => {
-   console.log($(".quantity").value);
+// const getQuntity = () => {
+//    console.log($(".quantity").value);
 
-}
+// }
+
+// Order Submission Alert
+$(function() {
+  const $submit = $("#orderSubmit");
+  $submit.on('click', function () {
+    $("#orderAlert").fadeIn()
+  })
+});
