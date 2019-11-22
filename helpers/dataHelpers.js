@@ -156,17 +156,20 @@ module.exports = (db) => ({
    * returns all the previous orders placed by a certain user.
    * @param {number} id - users.id
    */
-  GetOrderHistoryFromId: function(id) {
+  getOrderHistoryFromId: function(id) {
     return db.query(`
-    SELECT restaurants.title, menu_items.title, DATE(status) AS Date
-    FROM restaurants
-      JOIN menu_items ON restaurants.id = menu_items.restaurant_id
-      JOIN orders ON restaurants.id = orders.restaurant_id
-    WHERE orders.user_id = 1
-    ORDER BY restaurants.title;
+    SELECT orders.id AS orderid, restaurants.title AS restaurantName, restaurants.cover_photo_url AS pic
+    FROM orders
+    JOIN restaurants ON restaurants.id = restaurant_id
+    JOIN order_items ON order_id = orders.id
+    JOIN menu_items ON menu_items.id = menu_item_id
+    WHERE orders.user_id = $1
+    GROUP BY orders.id, restaurants.title, restaurants.cover_photo_url
+    ORDER BY orders.id;
     `, [id])
       .then(res => {
-        return res.rows[0];
+        console.log(res.rows)
+        return res.rows;
       });
   },
 
