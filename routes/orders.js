@@ -2,9 +2,9 @@ const express = require('express');
 const router  = express.Router();
 const dh = require('../helpers/dataHelpers');
 
-// const accountSid = 'AC2d799e3b41b15182aa89ad2eca682d28';
-// const authToken = '28705347311b7d8df12c161f50790ca7';
-// const client = require('twilio')(accountSid, authToken);
+const accountSid = 'AC2d799e3b41b15182aa89ad2eca682d28';
+const authToken = '28705347311b7d8df12c161f50790ca7';
+const client = require('twilio')(accountSid, authToken);
 
 module.exports = (db) => {
   // send sms to owner, details - order item, qty
@@ -24,14 +24,15 @@ module.exports = (db) => {
               .then(currentTime => {
                 let templateVar = { id: id };
                 console.log(templateVar);
-                console.log('---------------curent time reached', currentTime);
+                console.log(currentTime);
                 res.redirect("/restaurants");
                 res.send(`restaurant awaiting confirmation for order ${id}`);
               }));
         })
         .catch(e => {
           console.log(e);
-          res.send(e);
+          res.redirect('/restaurants');
+          // res.send(e);
         });
     }
   });

@@ -10,6 +10,7 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require("cookie-session");
+const errorPage = require("./errorPage.js");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -46,6 +47,7 @@ const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const signupRoutes = require("./routes/signup");
 const confirmRoutes = require("./routes/confirm");
+// const errorRoutes = require("./routes/error"); // for future error handling implmentation
 
 // const dataHelpers = require(".");
 
@@ -62,6 +64,7 @@ app.use("/orders", ordersRoutes(db));
 app.use("/signup", signupRoutes(db));
 app.use("/logout", logoutRoutes());
 app.use("/confirm", confirmRoutes(db));
+// app.use("/error", errorRoutes()); // for future error handling implementation
 // Note: mount other resources here, using the same pattern above
 
 
@@ -71,6 +74,14 @@ app.use("/confirm", confirmRoutes(db));
 // redirects to the restaurant page from here
 app.get("/", (req, res) => {
   res.redirect("/restaurants");
+});
+
+app.use(function(req,res) {
+  res.status(404);
+  let msg = "Sorry, we don't have this restaurant yet";
+  let redirect = '/restaurants';
+  res.send(errorPage(404, redirect, msg));
+  console.log('------------------- incorrect path reached');
 });
 
 app.listen(PORT, () => {

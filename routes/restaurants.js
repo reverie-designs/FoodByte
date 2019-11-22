@@ -21,9 +21,8 @@ module.exports = (db) => {
           res.render("index", {restaurants, username: null, duration: null});
         }
       })
-      .catch(e => {
-        console.log(e);
-        res.send(e);
+      .catch(() => {
+        res.redirect('/restaurants');
       });
   });
 
@@ -32,7 +31,6 @@ module.exports = (db) => {
     if (!req.session.user_id) {
       res.redirect('/login');
     } else {
-
       let id = req.params.id; //restaurant id
       // console.log(id, 'THIS IS REST ID');
       dh(db).getAllRestaurantMenuItems(id)
@@ -44,11 +42,17 @@ module.exports = (db) => {
             .then(newOrder =>{
             // console.log(newOrder);
               res.render("orders", {menu_items, username: name, newOrder});
+            })
+            .catch(e => {
+              console.log('-------------------------------WRONG RESTAURANT');
+              console.log(e);
+              res.redirect('/restaurants');
             });
         })
         .catch(e => {
           console.log(e);
-          res.send(e);
+          res.redirect('/restaurants');
+          // res.send(e);
         });
     }
   });
