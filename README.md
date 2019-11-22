@@ -9,25 +9,24 @@ Your refactored route to rendering food to your internal digestive system.
 ### Desktop View
 
 Home Page
-!["Screeshot of FoodByte home page"]()
+!["Screeshot of FoodByte home page"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte%20-%20Order-History.jpg)
 Map View
-!["Screeshot Foodbyte Home Page map view"]()
+!["Screeshot Foodbyte Home Page map view"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-map-view.jpg)
 Orders Page
-!["Screeshot of Orders Page"]()
+!["Screeshot of Orders Page"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-orders.jpg)
 Order History
-!["Screeshot of Order History"]()
+!["Screeshot of Order History"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte%20-%20Order-History.jpg)
 Login
-!["Screeshot of Foodbyte login"]()
+!["Screeshot of Foodbyte login"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte%20-%20Login.png)
 Restaurant Set Time Ower Side 
-!["Screeshot of url sent to restaurant owner via SMS"]()
+!["Screeshot of url sent to restaurant owner via SMS"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte-Owner%20Page.png)
 Client Receives SMS
-!["Screeshot of url sent to client via SMS"]()
+!["Screeshot of url sent to client via SMS"](https://files.slack.com/files-pri/T2G8TE2E5-FQN3N6Y81/img_7100.png)
 
 ## Contributors
-
-@HermSidhu
-@reverie-designs
-@johnarvi
+[@HermSidhu](https://github.com/HermSidhu "@HermSidhu")
+[@reverie-designs](https://github.com/reverie-designs "@reverie-designs")
+[@johnarvi](https://github.com/johnarvi "@johnarvi")
 
 ## Project Setup
 
