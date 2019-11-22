@@ -67,3 +67,15 @@ $(function() {
     setTimeout(function(){ $('.order-form').submit(); }, 3000);
   })
 });
+
+
+//Show either login or sign up forms
+$(function(){
+  $(".signup").on("click", function(){
+      $("#signup").removeClass("d-none").addClass("d-block");
+  })
+  $(".login").on("click", function(){
+    $("#login").removeClass("d-none").addClass("d-block");
+})
+});
+
