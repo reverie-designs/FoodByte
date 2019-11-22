@@ -18,19 +18,16 @@ module.exports = (db) => {
           client.messages.create({ // sends link to restaurants side
             to:   '+16479686754',
             from: '+16479300219',
-            body: `Please click this link to set the duration of this order ${id} - 1a1190a3.ngrok.io/confirm/${id}`
+            body: `Please click this link to set the duration of this order ${id} - https://393f32fd.ngrok.io/confirm/${id}`
           })
             .then(dh(db).setOrderStatus(id)
               .then(currentTime => {
                 let templateVar = { id: id };
-                console.log(templateVar);
-                console.log(currentTime);
                 res.redirect("/restaurants");
                 res.send(`restaurant awaiting confirmation for order ${id}`);
               }));
         })
         .catch(e => {
-          console.log(e);
           res.redirect('/restaurants');
           // res.send(e);
         });

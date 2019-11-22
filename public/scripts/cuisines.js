@@ -3,7 +3,6 @@ $(document).ready(function() {
 
   $("select").on("change", (function() {
     let selection = this.value;
-    console.log(selection);
     if (selection === 'All') {
       $("article").removeClass("d-none").addClass("d-block");
     } else {
@@ -15,7 +14,3 @@ $(document).ready(function() {
     }
   }));
 });
-
-// $('#restraunts').find(selection).removeClass("d-flex").addClass("d-none");
-// console.log(unselectedType);
-// $(`#restaurants .${selection}`).removeClass("d-flex").addClass("d-none");

@@ -49,12 +49,6 @@ const signupRoutes = require("./routes/signup");
 const confirmRoutes = require("./routes/confirm");
 const orderhistoryRoutes = require("./routes/orderhistory");
 
-// const dataHelpers = require(".");
-
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-// const data = dataHelpers(db);
-// data.getUserByEmail('email').then(user => console.log('WORKS!: ', user));
 
 // app.use("/api/users", usersRoutes(db)); //are we keeping it this way //==============
 app.use("/api/widgets", widgetsRoutes(db));

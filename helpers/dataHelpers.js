@@ -16,7 +16,7 @@ module.exports = (db) => ({
   },
 
   /**
-   * Populates the restaurants page with the different pages.
+   * Preturns an array of objects with restaurant name, photos and id
    */
 
   getAllRestaurants: function() {
@@ -42,14 +42,13 @@ module.exports = (db) => ({
                     WHERE menu_items.restaurant_id = $1;
     `, [restaurant_id])
       .then(res => {
-        // console.log(res.rows);
         return res.rows;
       });
   },
   /**
    * Creates a new order upon restaurant redirection with order user id and restaurant id
-   * @param {Number} restaurant_id
    * @param {Number} userID
+   * @param {Number} restaurant_id
    */
   createOrder: function(userId, restaurant_id) {
     return db.query(`
@@ -60,8 +59,8 @@ module.exports = (db) => ({
   },
 
   /**
-   * Adds a user to the user database.
-   * @param {Number} restaurant_id
+   * takes in an object of user info and adds it to user table in the database then rerturns it
+   * @param {obj}  obj information about the user
    */
 
   addUser: function(obj) {
@@ -97,7 +96,6 @@ module.exports = (db) => ({
     queryString += ` RETURNING*;`;
     return db.query(queryString, values)
       .then(res => {
-        console.log('THIS IS AN INSTERTED order', res.rows);
         return res.rows;
       });
   },
@@ -165,10 +163,9 @@ module.exports = (db) => ({
     JOIN menu_items ON menu_items.id = menu_item_id
     WHERE orders.user_id = $1
     GROUP BY orders.id, restaurants.title, restaurants.cover_photo_url
-    ORDER BY orders.id;
+    ORDER BY orders.id DESC;
     `, [id])
       .then(res => {
-        console.log(res.rows)
         return res.rows;
       });
   },
