@@ -21,7 +21,7 @@ Map View
 ### Login
 !["Screeshot of Foodbyte login"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte%20-%20Login.png)
 
-### Restaurant Set Time Ower Side 
+### Restaurant Set Time Owner Side 
 <img src="https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte-Owner%20Page.png"  alt="Screeshot of url sent to restaurant owner via SMS" width="220">
 
 ### Client Receives SMS
