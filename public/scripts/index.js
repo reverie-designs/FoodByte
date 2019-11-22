@@ -71,10 +71,10 @@ $(function() {
 
 //Show either login or sign up forms
 $(function(){
-  $(".signup").on("click", function(){
+  $("#sign").on("click", function(){
       $("#signup").removeClass("d-none").addClass("d-block");
   })
-  $(".login").on("click", function(){
+  $("#log").on("click", function(){
     $("#login").removeClass("d-none").addClass("d-block");
 })
 });
