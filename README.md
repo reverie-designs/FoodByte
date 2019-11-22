@@ -1,7 +1,7 @@
 
 =========
 # FootByte
-<img src=""  alt="Screenshot of Tweet App Mobile View" width="220">
+
 A Food pickup ordering app, saves times and satisfies your food cravings.
 Your refactored route to rendering food to your internal digestive system.
 
@@ -9,7 +9,7 @@ Your refactored route to rendering food to your internal digestive system.
 ### Desktop View
 
 Home Page
-!["Screeshot of FoodByte home page"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte%20-%20Order-History.jpg)
+!["Screeshot of FoodByte home page"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-homepage.jpg)
 Map View
 !["Screeshot Foodbyte Home Page map view"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-map-view.jpg)
 Orders Page
@@ -21,7 +21,7 @@ Login
 Restaurant Set Time Ower Side 
 !["Screeshot of url sent to restaurant owner via SMS"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte-Owner%20Page.png)
 Client Receives SMS
-!["Screeshot of url sent to client via SMS"](https://files.slack.com/files-pri/T2G8TE2E5-FQN3N6Y81/img_7100.png)
+!["Screeshot of url sent to client via SMS"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-sms-client.png)
 
 ## Contributors
 [@HermSidhu](https://github.com/HermSidhu "@HermSidhu")
@@ -78,7 +78,7 @@ Client Receives SMS
 
 ## Suggested
 - Nodemon 1.19 or above
-Note: if you do not have this dependency to start run `npm start` instead of `npm run local`
+-- Note: if you do not have this dependency to start run `npm start` instead of `npm run local`
 
 # Functionality 
 
