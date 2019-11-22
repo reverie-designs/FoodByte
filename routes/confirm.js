@@ -2,9 +2,10 @@ const express = require('express');
 const router  = express.Router();
 const dh = require('../helpers/dataHelpers');
 
-const accountSid = 'AC2d799e3b41b15182aa89ad2eca682d28';
-const authToken = '28705347311b7d8df12c161f50790ca7';
-const client = require('twilio')(accountSid, authToken);
+// TWILLIO input your user account info here //
+// const accountSid = '';
+// const authToken = '';
+// const client = require('twilio')(accountSid, authToken);
 
 module.exports = (db) => {
   router.get("/:id", (req, res) => {
@@ -19,8 +20,8 @@ module.exports = (db) => {
 
     // client side messaging the order duration
     client.messages.create({
-      to:   '+16477004837',
-      from: '+16479300219',
+      to:   '', ///client phone
+      from: '+16479300219', //twillio generate number $1
       body: `your order will be ready in ${time} minutes`
     })
       .then(() => dh(db).setOrderTime(time, order_id))
