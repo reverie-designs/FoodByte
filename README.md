@@ -6,22 +6,26 @@ A Food pickup ordering app, saves times and satisfies your food cravings.
 Your refactored route to rendering food to your internal digestive system.
 
 
-### Desktop View
+## Desktop View
 
-Home Page
+### Home Page
 !["Screeshot of FoodByte home page"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-homepage.jpg)
 Map View
 !["Screeshot Foodbyte Home Page map view"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-map-view.jpg)
-Orders Page
+
+### Orders Page
 !["Screeshot of Orders Page"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-orders.jpg)
-Order History
+### Order History
 !["Screeshot of Order History"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte%20-%20Order-History.jpg)
-Login
+
+### Login
 !["Screeshot of Foodbyte login"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte%20-%20Login.png)
-Restaurant Set Time Ower Side 
-!["Screeshot of url sent to restaurant owner via SMS"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte-Owner%20Page.png)
-Client Receives SMS
-!["Screeshot of url sent to client via SMS"](https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-sms-client.png)
+
+### Restaurant Set Time Ower Side 
+<img src="https://github.com/reverie-designs/FoodByte/blob/master/public/docs/FoodByte-Owner%20Page.png"  alt="Screeshot of url sent to restaurant owner via SMS" width="220">
+
+### Client Receives SMS
+<img src="https://github.com/reverie-designs/FoodByte/blob/master/public/docs/foodbyte-sms-client.png"  alt="Screeshot of url sent to client via SMS" width="220">
 
 ## Contributors
 [@HermSidhu](https://github.com/HermSidhu "@HermSidhu")
