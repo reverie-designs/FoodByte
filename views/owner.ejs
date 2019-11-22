@@ -23,26 +23,28 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-info">
+<main class="">
 
-<main class="d-flex justify-content-between login-main">
+  <!-- <section class="log-in mr-4 w-75 text-center"> -->
+    <h2 class="text-light border border-bottom">FoodByte</h2>
 
-  <section class="log-in mr-4">
-    <h1 class="text-light">How long will this order take?</h1>
-      <form method="POST" action="/confirm/<%= id %>">
-          <div class="form-group row">
-            <label for="example-number-input" class="col-2 col-form-label">Please set order duration (in minutes)</label>
-            <div class="col-10">
+    <h1 class="text-light text-center w-100">How long will this order take?</h1>
+      <form method="POST" action="/confirm/<%= id %>" class="w-50 m-auto">
+          <div class="form-group row w-75 m-auto">
+              <h5 class="text-light text-center mx-auto mb-2">Please set order duration (in minutes)</h5>
               <input class="form-control" type="number" name="time" value="0" id="time" min="0">
+
+            <div class="">
+                <button type="submit" class="btn btn-light text-center mt-3">Submit</button>
             </div>
+
           </div>
-          <button type="submit" class="btn btn-light">Submit</button>
+
       </form>
+      <div class="m-auto text-center mt-2"> <img src="https://i.chzbgr.com/full/7841633024/h5617C2DA/i-came-in-like-a-chain-chomp" alt=""></div>
 
-  </section>
+  <!-- </section> -->
 </main>
-
-
-    <footer class="text-light text-center"> <p><small> FoodByte created By Herm, Arv, Dasha For Lighthouse Labs 2019</small></p></footer>
   </body>
 </html>
