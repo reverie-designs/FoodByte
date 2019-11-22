@@ -10,6 +10,7 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require("cookie-session");
+const errorPage = require("./errorPage.js");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -73,6 +74,14 @@ app.use("/confirm", confirmRoutes(db));
 // redirects to the restaurant page from here
 app.get("/", (req, res) => {
   res.redirect("/restaurants");
+});
+
+app.use(function(req,res) {
+  res.status(404);
+  let msg = "Sorry, we don't have this restaurant yet";
+  let redirect = '/restaurants';
+  res.send(errorPage(404, redirect, msg));
+  console.log('------------------- incorrect path reached');
 });
 
 app.listen(PORT, () => {

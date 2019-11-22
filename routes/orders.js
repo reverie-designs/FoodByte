@@ -24,14 +24,15 @@ module.exports = (db) => {
               .then(currentTime => {
                 let templateVar = { id: id };
                 console.log(templateVar);
-                console.log('---------------curent time reached', currentTime);
+                console.log(currentTime);
                 res.redirect("/restaurants");
                 res.send(`restaurant awaiting confirmation for order ${id}`);
               }));
         })
         .catch(e => {
           console.log(e);
-          res.send(e);
+          res.redirect('/restaurants');
+          // res.send(e);
         });
     }
   });
