@@ -21,7 +21,7 @@ module.exports = (db) => {
     // client side messaging the order duration
     client.messages.create({
       to:   '', ///client phone
-      from: '+16479300219', //twillio generate number $1
+      from: process.env.TWILIO_FROM_NUMBER, //twillio generate number $1
       body: `your order will be ready in ${time} minutes`
     })
       .then(() => dh(db).setOrderTime(time, order_id))

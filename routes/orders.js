@@ -18,7 +18,7 @@ module.exports = (db) => {
         .then(order => {
           client.messages.create({ // sends link to restaurants side
             to:   '', // client number here
-            from: '+16479300219', //twillio generated number here
+            from: process.env.TWILIO_FROM_NUMBER, //twillio generated number here
             body: `Please click this link to set the duration of this order ${id} - https://393f32fd.ngrok.io/confirm/${id}` //ngrok generated url with order id
           })
             .then(dh(db).setOrderStatus(id)
